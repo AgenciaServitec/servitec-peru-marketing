@@ -7,7 +7,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="es">
         <body className="min-h-screen">
         <div className="global-background" />
-        <div className="relative z-10">
+        <div className="relative">
             <HeaderLayout />
             <main>{children}</main>
             <FooterLayout />

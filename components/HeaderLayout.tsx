@@ -25,7 +25,7 @@ export function HeaderLayout() {
               <Link href="/" className="flex items-center gap-2">
                 <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-primary to-secondary shadow-primary"/>
                 <div className="leading-tight">
-                  <p className="text-sm font-semibold tracking-tight">Servitec</p>
+                  <p className="text-sm font-semibold tracking-tight font-roboto">Servitec</p>
                   <p className="text-xs text-muted-foreground -mt-0.5">
                     Marketing & Desarrollo
                   </p>
