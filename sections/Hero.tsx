@@ -3,137 +3,128 @@
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import {cn} from "@/lib/utils";
+import {ContentWidth} from "@/components/ContentWidth";
+import {useTypewriter} from "@/hooks/useTypewriter";
+
+const phrases = [
+    "campañas de anuncios que generan leads",
+    "SEO que posiciona negocios locales",
+    "webs rápidas enfocadas en conversión",
+    "publicidad en Google y Meta Ads",
+    "estrategia digital con resultados medibles",
+];
 
 export function Hero() {
+
+    const typedText = useTypewriter(phrases);
+
     return (
-        <section className="relative overflow-hidden">
+        <ContentWidth>
             <div className="pointer-events-none absolute inset-0">
-                <div className="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-primary/15 blur-3xl" />
-                <div className="absolute -top-10 -right-24 h-72 w-72 rounded-full bg-secondary/15 blur-3xl" />
-                <div className="absolute -bottom-24 left-1/3 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
+                <div className="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-primary/15 blur-3xl"/>
+                <div className="absolute -top-10 -right-24 h-72 w-72 rounded-full bg-secondary/15 blur-3xl"/>
+                <div className="absolute -bottom-24 left-1/3 h-72 w-72 rounded-full bg-accent/10 blur-3xl"/>
             </div>
+            <section className="relative overflow-hidden">
+                <div className="pt-16 relative">
 
-            <div className="container-custom section-padding relative">
-                <div className="absolute right-4 top-10 md:right-10 md:top-16">
-                    <div className="relative">
-                        <div className="h-20 w-20 md:h-24 md:w-24 rounded-full bg-primary shadow-primary" />
-                        <div className="absolute inset-[10px] rounded-full bg-background/90 border border-border/70 backdrop-blur" />
-                        <div className="absolute inset-0 grid place-items-center">
-                            <div className="text-center leading-none">
-                                <p className="text-[10px] md:text-xs font-semibold tracking-wide text-foreground">
-                                    LET’S GO
-                                </p>
-                                <p className="text-[9px] md:text-[10px] text-muted-foreground">
-                                    COMUNICACIÓN
-                                </p>
-                            </div>
+                    <div className="mx-auto max-w-4xl text-center">
+
+                        <h1 className="mt-5 font-extrabold tracking-tight leading-[0.95] text-[clamp(2.4rem,5vw,4.5rem)]">
+                            Marketing digital y desarrollo web
+                        </h1>
+
+                        <p className="mt-3 text-lg md:text-xl font-medium">
+                            para{" "}
+                            <span className="text-primary font-semibold">
+    {typedText}
+                                <span className="animate-pulse">|</span>
+  </span>
+                        </p>
+
+                        <div className="mt-7 flex flex-col sm:flex-row sm:justify-center gap-3">
+                            <Button className="rounded-full bg-primary text-primary-foreground hover:opacity-95"
+                                    asChild>
+                                <Link href="/cotizar">Solicitar cotización</Link>
+                            </Button>
+
+                            <Button variant="outline" className="rounded-full border-primary/30 hover:border-primary"
+                                    asChild>
+                                <Link href="/servicios">Ver servicios</Link>
+                            </Button>
                         </div>
-
-                        <div className="pointer-events-none absolute -inset-3 rounded-full border border-dashed border-border/60" />
                     </div>
-                </div>
 
-                <div className="max-w-4xl">
-                    <p className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/60 px-3 py-1 text-xs text-muted-foreground">
-                        <span className="h-2 w-2 rounded-full bg-accent" />
-                        Agencia de marketing + desarrollo web
-                    </p>
+                    <div className="mt-10 md:mt-14">
+                        <div
+                            className="rounded-3xl border border-border/70 bg-card/50 backdrop-blur p-3 md:p-4 shadow-sm">
+                            <div
+                                className={cn(
+                                    "flex gap-3 md:gap-4",
+                                    "overflow-x-auto md:overflow-visible",
+                                    "snap-x snap-mandatory [-webkit-overflow-scrolling:touch]",
+                                    "pb-1"
+                                )}
+                            >
+                                <HeroCard
+                                    tone="primary"
+                                    accent="red"
+                                    title="Publicidad digital"
+                                    subtitle="Campañas en Google y Meta enfocadas en leads y ventas."
+                                    rightTag="01"
+                                    className="w-[260px] sm:w-[300px] md:w-[320px] lg:w-[340px]"
+                                />
 
-                    <h1 className="mt-5 font-extrabold tracking-tight leading-[0.95]">
-                        <span className="block">SOCIAL MEDIA</span>
-                        <span className="block">GROWTH ENGINE.</span>
-                    </h1>
+                                <HeroCard
+                                    tone="neutral"
+                                    accent="blue"
+                                    title="Branding y diseño web"
+                                    subtitle="Identidad visual y sitios web rápidos, claros y optimizados para conversión."
+                                    rightTag="02"
+                                    className="w-[260px] sm:w-[300px] md:w-[320px] lg:w-[340px]"
+                                />
 
-                    <p className="mt-5 max-w-2xl text-base md:text-lg text-muted-foreground">
-                        Estrategia, creatividad y tecnología para escalar tu presencia digital.
-                        Campañas que convierten + webs rápidas y medibles.
-                    </p>
+                                <HeroCard
+                                    tone="warm"
+                                    accent="green"
+                                    title="SEO y contenido estratégico"
+                                    subtitle="Posicionamiento orgánico y contenido pensado para atraer clientes."
+                                    rightTag="03"
+                                    className="w-[260px] sm:w-[300px] md:w-[320px] lg:w-[340px]"
+                                />
 
-                    <div className="mt-7 flex flex-col sm:flex-row gap-3">
-                        <Button
-                            className="rounded-full bg-primary text-primary-foreground hover:opacity-95"
-                            asChild
-                        >
-                            <Link href="/cotizar">Empezar</Link>
-                        </Button>
+                                <div
+                                    className="snap-start relative overflow-hidden rounded-2xl border border-border/70 bg-background p-5 min-h-[180px] w-[240px] sm:w-[260px] md:w-[280px]">
+                                    <div
+                                        className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-secondary/15 blur-2xl"/>
+                                    <div className="flex items-start justify-between gap-4">
+                                        <p className="text-xs text-muted-foreground">Proyectos entregados</p>
+                                        <Link
+                                            href="/servicios"
+                                            className="text-xs text-muted-foreground hover:text-foreground transition"
+                                        >
+                                            Ver todo →
+                                        </Link>
+                                    </div>
 
-                        <Button
-                            variant="outline"
-                            className="rounded-full border-primary/30 hover:border-primary"
-                            asChild
-                        >
-                            <Link href="/servicios">Ver servicios</Link>
-                        </Button>
-                    </div>
-                </div>
+                                    <div className="mt-7">
+                                        <p className="text-5xl font-extrabold tracking-tight">4.9 ★</p>
+                                        <p className="mt-1 text-sm text-muted-foreground">valoración promedio</p>
+                                    </div>
 
-                <div className="mt-10 md:mt-14">
-                    <div className="rounded-3xl border border-border/70 bg-card/50 backdrop-blur p-3 md:p-4 shadow-sm">
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-4">
-                            <HeroCard
-                                tone="primary"
-                                title="Explore\nMore!"
-                                subtitle="Ads + Creatividad"
-                                rightTag="01"
-                            />
-
-                            <HeroCard
-                                tone="neutral"
-                                title="Social\nIdentity"
-                                subtitle="Branding & Diseño"
-                                rightTag="02"
-                            />
-
-                            <HeroCard
-                                tone="warm"
-                                title="Seasonal\nmarketing tips"
-                                subtitle="Contenido & Growth"
-                                rightTag="03"
-                            />
-
-                            <div className="relative overflow-hidden rounded-2xl border border-border/70 bg-background p-5">
-                                <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-secondary/15 blur-2xl" />
-                                <div className="flex items-start justify-between gap-4">
-                                    <p className="text-xs text-muted-foreground">(SMM)</p>
-                                    <span className="text-xs text-muted-foreground">ALL SERVICES →</span>
-                                </div>
-
-                                <div className="mt-6">
-                                    <p className="text-4xl font-extrabold tracking-tight">
-                                        349
-                                    </p>
-                                    <p className="mt-1 text-sm text-muted-foreground">
-                                        4.9 Reviews ★
-                                    </p>
-                                </div>
-
-                                <div className="mt-6 flex items-center gap-2">
-                                    <span className="h-2 w-2 rounded-full bg-primary" />
-                                    <p className="text-xs text-muted-foreground">
-                                        Resultados medibles desde el día 1
-                                    </p>
+                                    <div className="mt-7 flex items-center gap-2">
+                                        <span className="h-2 w-2 rounded-full bg-primary"/>
+                                        <p className="text-xs text-muted-foreground">
+                                            Resultados medibles desde el inicio
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/40 px-3 py-1">
-              <span className="h-2 w-2 rounded-full bg-primary" />
-              SEO & Ads
-            </span>
-                        <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/40 px-3 py-1">
-              <span className="h-2 w-2 rounded-full bg-secondary" />
-              Web & Landing Pages
-            </span>
-                        <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/40 px-3 py-1">
-              <span className="h-2 w-2 rounded-full bg-accent" />
-              Analítica & Automatización
-            </span>
-                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </ContentWidth>
     );
 }
 
@@ -142,52 +133,82 @@ function HeroCard({
                       title,
                       subtitle,
                       rightTag,
+                      className,
+                      variant = "image",
+                      accent = "blue",
                   }: {
     tone: "primary" | "neutral" | "warm";
     title: string;
     subtitle: string;
     rightTag: string;
+    className?: string;
+    variant?: "image" | "paper";
+    accent?: "red" | "blue" | "green" | "amber";
 }) {
-    const bg = {
-        primary:
-            "bg-gradient-to-br from-primary/95 to-secondary/85 text-primary-foreground",
-        neutral:
-            "bg-gradient-to-br from-muted to-background text-foreground",
-        warm:
-            "bg-gradient-to-br from-primary/90 via-accent/65 to-secondary/75 text-primary-foreground",
-    }[tone];
+    const accentStyles = {
+        red: {
+            shell: "from-red-500/8 via-red-500/4 to-transparent border-red-500/15",
+            dot: "bg-red-500",
+            glow: "bg-red-500/10",
+            pill: "bg-red-500/8 border-red-500/15 text-foreground/80",
+        },
+        blue: {
+            shell: "from-blue-500/8 via-blue-500/4 to-transparent border-blue-500/15",
+            dot: "bg-blue-500",
+            glow: "bg-blue-500/10",
+            pill: "bg-blue-500/8 border-blue-500/15 text-foreground/80",
+        },
+        green: {
+            shell: "from-emerald-500/8 via-emerald-500/4 to-transparent border-emerald-500/15",
+            dot: "bg-emerald-500",
+            glow: "bg-emerald-500/10",
+            pill: "bg-emerald-500/8 border-emerald-500/15 text-foreground/80",
+        },
+        amber: {
+            shell: "from-amber-500/10 via-amber-500/5 to-transparent border-amber-500/15",
+            dot: "bg-amber-500",
+            glow: "bg-amber-500/12",
+            pill: "bg-amber-500/10 border-amber-500/15 text-foreground/80",
+        },
+    }[accent];
 
     return (
         <div
             className={cn(
-                "relative overflow-hidden rounded-2xl border border-border/70 p-5 min-h-[168px]",
-                bg,
+                "snap-start relative overflow-hidden rounded-2xl border p-5",
+                "min-h-[180px] md:min-h-[350px]",
+                "bg-gradient-to-br",
+                accentStyles.shell,
+                className
             )}
         >
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+            <div className={cn("pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full blur-3xl", accentStyles.glow)} />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/[0.03] to-transparent" />
 
             <div className="relative flex items-start justify-between gap-3">
-                <p className="text-xs font-semibold opacity-90">{subtitle}</p>
-                <span className="text-xs font-semibold opacity-80">{rightTag}</span>
+                <p className="text-xs font-semibold text-foreground/80">{subtitle}</p>
+                <span className="text-xs font-semibold text-foreground/60">{rightTag}</span>
             </div>
 
-            <div className="relative mt-6">
-                <p className="whitespace-pre-line text-2xl font-extrabold leading-[1.05] tracking-tight">
+            <div className="relative mt-7">
+                <p className="whitespace-pre-line text-3xl font-extrabold leading-[1.02] tracking-tight">
                     {title}
                 </p>
+
                 <div className="mt-4 flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-background/70" />
-                    <p className="text-xs opacity-85">
+                    <span className={cn("h-2 w-2 rounded-full", accentStyles.dot)} />
+                    <p className="text-xs text-foreground/65">
                         Estrategia · Diseño · Performance
                     </p>
                 </div>
             </div>
 
             <div className="absolute left-4 bottom-4">
-        <span className="inline-flex items-center rounded-full bg-background/20 px-3 py-1 text-[11px] font-semibold backdrop-blur border border-white/20">
+        <span className={cn("inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold backdrop-blur border", accentStyles.pill)}>
           Ver más →
         </span>
             </div>
         </div>
     );
 }
+
