@@ -1,18 +1,21 @@
 "use client";
 
+import * as React from "react";
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import {ArrowUpRight, CheckCircle2, Layers, LineChart, Rocket, Search,} from "lucide-react";
+import {ContentWidth} from "@/components/ContentWidth";
+import {cn} from "@/lib/utils";
 
 type Step = {
     step: string;
     title: string;
     desc: string;
-    bullets: string[];
+    bullets: readonly string[];
     icon: React.ReactNode;
 };
 
-const STEPS: Step[] = [
+const STEPS: readonly Step[] = [
     {
         step: "01",
         title: "Análisis",
@@ -45,60 +48,53 @@ const STEPS: Step[] = [
 
 export function HowWeWork() {
     return (
-        <section className="relative">
-            {/* soft background */}
-            <div className="pointer-events-none absolute inset-0">
-                <div className="absolute -top-24 left-10 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
-                <div className="absolute -bottom-24 right-10 h-72 w-72 rounded-full bg-secondary/10 blur-3xl" />
-            </div>
-
-            <div className="container-custom section-padding relative">
-                {/* Header */}
+        <section id="process" className="relative my-20 py-20">
+            <ContentWidth>
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
                     <div>
-                        <p className="text-xs tracking-wide text-muted-foreground">
-                            (HOW WE WORK)
-                        </p>
-                        <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight">
-                            Nuestro proceso para{" "}
-                            <span className="gradient-text-primary">lograr resultados</span>
+                        <h2 data-snake-title className="mt-3 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight">
+                            Nuestro proceso para lograr resultados
                         </h2>
                         <p className="mt-3 max-w-2xl text-muted-foreground">
-                            Trabajamos con un flujo claro: estrategia, ejecución y medición.
-                            Sin pasos innecesarios, con entregables visibles.
+                            Trabajamos con un flujo claro: estrategia, ejecución y medición. Sin pasos
+                            innecesarios, con entregables visibles.
                         </p>
                     </div>
 
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2" aria-label="Acciones principales">
                         <Button
                             variant="outline"
                             className="rounded-full border-primary/30 hover:border-primary"
                             asChild
+                            size="lg"
                         >
-                            <Link href="/contacto">
+                            <Link href="/contact">
                                 Agendar llamada <ArrowUpRight className="ml-2 h-4 w-4" />
                             </Link>
                         </Button>
-                        <Button className="rounded-full bg-primary text-primary-foreground hover:opacity-95" asChild>
+
+                        <Button className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90" asChild size="lg">
                             <Link href="/cotizar">Solicitar cotización</Link>
                         </Button>
                     </div>
                 </div>
 
-                {/* Steps */}
                 <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    {/* Left: steps grid */}
                     <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
                         {STEPS.map((s) => (
                             <div
                                 key={s.step}
-                                className="rounded-3xl border border-border/70 bg-card/50 backdrop-blur p-6 card-hover"
+                                className={cn(
+                                    "rounded-3xl border border-border/70 bg-card/50 backdrop-blur p-6",
+                                    "transition hover:bg-card/60 hover:border-border"
+                                )}
                             >
                                 <div className="flex items-start justify-between gap-4">
                                     <div className="flex items-center gap-3">
                                         <div className="h-11 w-11 rounded-2xl bg-background/60 border border-border/70 grid place-items-center text-muted-foreground">
                                             {s.icon}
                                         </div>
+
                                         <div>
                                             <p className="text-xs text-muted-foreground">
                                                 Paso {s.step}
@@ -107,19 +103,17 @@ export function HowWeWork() {
                                         </div>
                                     </div>
 
-                                    <span className="text-xs font-semibold rounded-full px-3 py-1 border border-border/70 bg-background/60 text-muted-foreground">
+                                    <span className="text-xs font-semibold rounded-full px-3 py-1 border border-border/70 bg-background/60 text-muted-foreground tabular-nums">
                     {s.step}
                   </span>
                                 </div>
 
-                                <p className="mt-4 text-sm text-muted-foreground">
-                                    {s.desc}
-                                </p>
+                                <p className="mt-4 text-sm text-muted-foreground">{s.desc}</p>
 
                                 <div className="mt-5 space-y-2">
                                     {s.bullets.map((b) => (
                                         <div key={b} className="flex items-start gap-2">
-                                            <CheckCircle2 className="h-4 w-4 text-accent mt-0.5" />
+                                            <CheckCircle2 className="h-4 w-4 text-emerald-500 mt-0.5" />
                                             <p className="text-sm text-muted-foreground">{b}</p>
                                         </div>
                                     ))}
@@ -128,13 +122,11 @@ export function HowWeWork() {
                         ))}
                     </div>
 
-                    {/* Right: sticky deliverables card */}
                     <div className="lg:col-span-4">
                         <div className="rounded-3xl border border-border/70 bg-card/50 backdrop-blur p-6 lg:sticky lg:top-24">
                             <p className="text-sm font-semibold">Entregables</p>
                             <p className="mt-2 text-sm text-muted-foreground">
-                                Desde la primera semana tendrás claridad de qué se hará y cómo se
-                                medirá.
+                                Desde la primera semana tendrás claridad de qué se hará y cómo se medirá.
                             </p>
 
                             <div className="mt-5 space-y-3">
@@ -146,15 +138,11 @@ export function HowWeWork() {
 
                             <div className="mt-6 rounded-2xl border border-border/70 bg-background/60 p-4">
                                 <p className="text-xs text-muted-foreground">
-                                    Tip: Si no sabes qué servicio te conviene, te guiamos en una
-                                    llamada de 15 minutos.
+                                    Tip: Si no sabes qué servicio te conviene, te guiamos en una llamada de 15 minutos.
                                 </p>
-                                <Button
-                                    variant="link"
-                                    className="px-0 text-primary hover:text-primary/90"
-                                    asChild
-                                >
-                                    <Link href="/contacto">
+
+                                <Button variant="link" className="px-0 text-primary hover:text-primary/90" asChild>
+                                    <Link href="/contact">
                                         Hablar con un asesor <ArrowUpRight className="ml-1 h-4 w-4" />
                                     </Link>
                                 </Button>
@@ -162,7 +150,7 @@ export function HowWeWork() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </ContentWidth>
         </section>
     );
 }

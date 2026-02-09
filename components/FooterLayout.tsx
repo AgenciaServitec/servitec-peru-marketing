@@ -1,23 +1,25 @@
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
+import {ContentWidth} from "@/components/ContentWidth";
+import * as React from "react";
 
 const FOOTER_LINKS = {
   Servicios: [
-    { label: "SEO & Ads", href: "/servicios/seo-ads" },
-    { label: "Web & Landing Pages", href: "/servicios/web" },
-    { label: "E-commerce", href: "/servicios/ecommerce" },
-    { label: "Branding", href: "/servicios/branding" },
+    { label: "SEO & Ads", href: "/services/seo-ads" },
+    { label: "Web & Landing Pages", href: "/services/web" },
+    { label: "E-commerce", href: "/services/ecommerce" },
+    { label: "Branding", href: "/services/branding" },
   ],
   Empresa: [
-    { label: "Nosotros", href: "/nosotros" },
-    { label: "Portafolio", href: "/portafolio" },
-    { label: "Precios", href: "/precios" },
-    { label: "Contacto", href: "/contacto" },
+    { label: "Nosotros", href: "/about" },
+    { label: "Portafolio", href: "/portfolio" },
+    { label: "Precios", href: "/prices" },
+    { label: "Contacto", href: "/contact" },
   ],
   Recursos: [
     { label: "Blog", href: "/blog" },
     { label: "Preguntas frecuentes", href: "/faq" },
-    { label: "Políticas", href: "/politicas" },
+    { label: "Políticas", href: "/policies" },
   ],
 };
 
@@ -25,8 +27,8 @@ export function FooterLayout() {
   const year = new Date().getFullYear();
 
   return (
-      <footer className="border-t border-border/60 bg-background">
-        <div className="container-custom py-10">
+      <footer className="border-t border-border/60 bg-background pt-10">
+        <ContentWidth>
           <div className="rounded-3xl border border-border/60 bg-card/50 p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5 overflow-hidden relative">
             <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-primary/15 blur-2xl" />
             <div className="absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-secondary/15 blur-2xl" />
@@ -46,27 +48,27 @@ export function FooterLayout() {
                   variant="outline"
                   className="rounded-full border-primary/30 hover:border-primary"
                   asChild
+                  size="lg"
               >
-                <Link href="/portafolio">Ver trabajos</Link>
+                <Link href="/portfolio">Ver trabajos</Link>
               </Button>
-              <Button className="rounded-full bg-primary text-primary-foreground hover:opacity-95" asChild>
+              <Button className="rounded-full bg-primary text-primary-foreground hover:opacity-95" asChild size="lg">
                 <Link href="/cotizar">Solicitar cotización</Link>
               </Button>
             </div>
           </div>
-        </div>
 
-        <div className="container-custom py-10">
+        <div className="py-10">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
             <div className="md:col-span-2">
               <div className="flex items-center gap-2">
-                <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-primary to-secondary shadow-primary" />
-                <div>
-                  <p className="font-semibold">Servitec</p>
-                  <p className="text-sm text-muted-foreground">
-                    Agencia de marketing y desarrollo web.
-                  </p>
-                </div>
+                <Link href="/" className="flex items-center gap-2">
+                  <img
+                      className="h-8 w-auto md:h-9"
+                      src="/logo-servitec-marketing.png"
+                      alt="Servitec Google"
+                  />
+                </Link>
               </div>
 
               <p className="mt-4 text-sm text-muted-foreground max-w-md">
@@ -111,10 +113,10 @@ export function FooterLayout() {
             </p>
 
             <div className="flex flex-wrap gap-3 text-xs">
-              <Link href="/terminos" className="text-muted-foreground hover:text-foreground">
+              <Link href="/terms" className="text-muted-foreground hover:text-foreground">
                 Términos
               </Link>
-              <Link href="/privacidad" className="text-muted-foreground hover:text-foreground">
+              <Link href="/privacy" className="text-muted-foreground hover:text-foreground">
                 Privacidad
               </Link>
               <Link href="/cookies" className="text-muted-foreground hover:text-foreground">
@@ -123,6 +125,7 @@ export function FooterLayout() {
             </div>
           </div>
         </div>
+        </ContentWidth>
       </footer>
   );
 }

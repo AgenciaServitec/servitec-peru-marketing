@@ -5,94 +5,79 @@ import Image from "next/image";
 import {Button} from "@/components/ui/button";
 import {ArrowUpRight, CheckCircle2, Target, Timer, TrendingUp} from "lucide-react";
 import {cn} from "@/lib/utils";
+import {ContentWidth} from "@/components/ContentWidth";
 
 type CaseStudy = {
     id: string;
     title: string;
+    kind: string;
     industry: string;
     problem: string;
     solution: string;
     results: { kpi: string; label: string; tone: "primary" | "secondary" | "accent" }[];
     tags: string[];
     href: string;
-    image?: string; // opcional: /public/cases/...
+    image?: string;
     gradientClass: string;
+    note: string;
 };
 
 const CASES: CaseStudy[] = [
     {
-        id: "case-ads-local",
-        title: "Leads para negocio local",
-        industry: "Servicios / Local",
-        problem: "Baja captación de consultas y poca visibilidad en búsquedas.",
+        id: "habkooal-villantas",
+        kind: "proyecto",
+        title: "Habkooal Villantas: captación + medición para ventas",
+        industry: "E-commerce / Local",
+        problem:
+            "Tráfico sin medición clara y pocas consultas desde formularios o WhatsApp.",
         solution:
-            "Reestructuramos campañas, mejoramos segmentación y creamos landing enfocada en conversión con tracking.",
+            "Implementamos tracking (GA4 + eventos), optimizamos páginas clave (categorías y producto) y armamos campañas orientadas a consultas con landing de apoyo.",
         results: [
-            { kpi: "+38%", label: "Más consultas", tone: "primary" },
-            { kpi: "-22%", label: "Costo por lead", tone: "accent" },
-            { kpi: "2.1x", label: "Mejor conversión", tone: "secondary" },
+            { kpi: "GA4", label: "Eventos + conversiones", tone: "secondary" },
+            { kpi: "-25%", label: "Mejoras en carga (objetivo)", tone: "primary" },
+            { kpi: "CTR ↑", label: "Optimización de anuncios", tone: "accent" },
         ],
-        tags: ["Google Ads", "Landing", "Tracking"],
-        href: "/casos/leads-negocio-local",
+        tags: ["Tracking", "Google Ads", "Landing"],
+        href: "/casos/habkooalvillantas",
+        image: "/case-studies/hankookalvillantas.png",
         gradientClass: "from-primary/90 via-secondary/65 to-accent/60",
+        note: "Proyecto destacado: métricas mostradas como objetivos/implementación (no resultados públicos).",
     },
     {
-        id: "case-seo-maps",
-        title: "SEO Local y Google Maps",
-        industry: "Comercio / Local",
-        problem: "No aparecía en Maps y la competencia captaba la demanda.",
+        id: "estudio-contable",
+        kind: "proyecto",
+        title: "Estudio contable: más consultas con SEO local + WhatsApp",
+        industry: "Servicios / Profesional",
+        problem:
+            "Poca visibilidad en búsquedas locales y consultas dispersas sin registro.",
         solution:
-            "Optimizamos Google Business Profile, estructura SEO on-page y plan de contenido por intención.",
+            "Optimizamos SEO on-page, configuramos Google Business Profile, y conectamos formularios/WhatsApp con medición de conversiones para seguimiento.",
         results: [
-            { kpi: "+52%", label: "Visitas a Maps", tone: "accent" },
-            { kpi: "+31%", label: "Llamadas", tone: "primary" },
-            { kpi: "+18%", label: "Tráfico orgánico", tone: "secondary" },
+            { kpi: "Maps", label: "Perfil optimizado", tone: "accent" },
+            { kpi: "Leads", label: "Form + WhatsApp medidos", tone: "secondary" },
+            { kpi: "SEO", label: "Contenido por intención", tone: "primary" },
         ],
-        tags: ["SEO", "Maps", "Contenido"],
-        href: "/casos/seo-local-maps",
+        tags: ["SEO Local", "Maps", "Conversiones"],
+        image: "/case-studies/servicont.png",
+        href: "/casos/estudio-contable",
         gradientClass: "from-accent/85 via-primary/55 to-secondary/65",
-    },
-    {
-        id: "case-web-speed",
-        title: "Web rápida orientada a conversión",
-        industry: "Empresa / B2B",
-        problem: "Sitio lento, sin mensajes claros y sin medición de conversiones.",
-        solution:
-            "Rediseño moderno, performance (Core Web Vitals), formularios + WhatsApp y analítica completa.",
-        results: [
-            { kpi: "90+", label: "Performance score", tone: "secondary" },
-            { kpi: "-40%", label: "Tiempo de carga", tone: "primary" },
-            { kpi: "+25%", label: "Conversiones", tone: "accent" },
-        ],
-        tags: ["Next.js", "UX", "Analytics"],
-        href: "/casos/web-performance",
-        gradientClass: "from-secondary/85 via-primary/60 to-accent/55",
+        note: "Proyecto destacado: enfoque en implementación y medición (sin cifras inventadas).",
     },
 ];
 
+
 export function CaseStudies() {
     return (
-        <section className="relative">
-            {/* soft glows */}
-            <div className="pointer-events-none absolute inset-0">
-                <div className="absolute -top-24 left-16 h-72 w-72 rounded-full bg-secondary/10 blur-3xl" />
-                <div className="absolute -bottom-24 right-10 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
-            </div>
-
-            <div className="container-custom section-padding relative">
-                {/* Header */}
+        <section id="cases" className="relative my-20 py-20">
+            <ContentWidth>
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
                     <div>
-                        <p className="text-xs tracking-wide text-muted-foreground">
-                            (CASE STUDIES)
-                        </p>
-                        <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight">
-                            Casos y{" "}
-                            <span className="gradient-text-primary">resultados</span>
+                        <h2 data-snake-title className="mt-3 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight">
+                            Casos y resultados
                         </h2>
                         <p className="mt-3 max-w-2xl text-muted-foreground">
                             Ejemplos de cómo combinamos estrategia, ejecución y medición para
-                            mejorar resultados. (Luego reemplazamos con datos reales.)
+                            mejorar resultados.
                         </p>
                     </div>
 
@@ -100,82 +85,72 @@ export function CaseStudies() {
                         variant="outline"
                         className="rounded-full border-primary/30 hover:border-primary"
                         asChild
+                        size="lg"
                     >
-                        <Link href="/casos">
-                            Ver todos <ArrowUpRight className="ml-2 h-4 w-4" />
+                        <Link href="/cases">
+                            Ver todos <ArrowUpRight className="ml-2 h-4 w-4"/>
                         </Link>
                     </Button>
                 </div>
 
-                {/* Cards */}
                 <div className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
                     {CASES.map((c) => (
                         <article
                             key={c.id}
                             className="rounded-3xl border border-border/70 bg-card/50 backdrop-blur overflow-hidden card-hover"
                         >
-                            {/* Media */}
-                            <div className="relative">
-                                {c.image ? (
-                                    <div className="relative h-[220px] w-full">
-                                        <Image
-                                            src={c.image}
-                                            alt={c.title}
-                                            fill
-                                            className="object-cover"
-                                            priority={false}
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-                                    </div>
-                                ) : (
-                                    <div
-                                        className={cn(
-                                            "h-[220px] w-full bg-gradient-to-br",
-                                            c.gradientClass,
-                                        )}
-                                    >
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-transparent" />
-                                    </div>
-                                )}
+                            <div className="relative h-[220px] w-full overflow-hidden rounded-t-3xl">
+                                <div className="absolute inset-0 bg-gradient-to-br from-sky-900/55 to-sky-800/35"/>
 
-                                {/* overlay text */}
-                                <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                                    <p className="text-white/85 text-xs font-semibold">
+                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.08),transparent_45%)]"/>
+
+                                <div className="absolute inset-0 bg-black/30"/>
+
+                                <div className="relative z-10 p-6 flex flex-col justify-end h-full">
+                                    <p className="text-white/80 text-xs font-semibold">
                                         {c.industry}
                                     </p>
+
                                     <h3 className="mt-2 text-white text-2xl font-extrabold leading-tight">
                                         {c.title}
                                     </h3>
 
                                     <div className="mt-3 flex flex-wrap gap-2">
                                         {c.tags.map((t) => (
-                                            <span
-                                                key={t}
-                                                className="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold text-white border border-white/20 backdrop-blur"
-                                            >
-                        {t}
-                      </span>
+                                            <span key={t} className="rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold text-white border border-white/15">{t}</span>
                                         ))}
                                     </div>
                                 </div>
+
+                                {c.image && (
+                                    <div className="absolute right-5 top-5 z-10 hidden md:block">
+                                        <div
+                                            className="relative h-14 w-20 overflow-hidden rounded-xl border border-white/15 bg-white/5">
+                                            <Image
+                                                src={c.image}
+                                                alt=""
+                                                fill
+                                                className="object-cover opacity-80"
+                                            />
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
-                            {/* Content */}
                             <div className="p-6">
                                 <div className="space-y-4">
                                     <Block
-                                        icon={<Target className="h-4 w-4" />}
+                                        icon={<Target className="h-4 w-4"/>}
                                         label="Problema"
                                         text={c.problem}
                                     />
                                     <Block
-                                        icon={<CheckCircle2 className="h-4 w-4" />}
+                                        icon={<CheckCircle2 className="h-4 w-4"/>}
                                         label="Solución"
                                         text={c.solution}
                                     />
                                 </div>
 
-                                {/* Results */}
                                 <div className="mt-5 grid grid-cols-3 gap-2">
                                     {c.results.map((r) => (
                                         <div
@@ -203,16 +178,16 @@ export function CaseStudies() {
 
                                 <div className="mt-6 flex items-center justify-between">
                                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                                        <TrendingUp className="h-4 w-4" />
+                                        <TrendingUp className="h-4 w-4"/>
                                         <span>Optimización continua</span>
                                         <span className="mx-1">•</span>
-                                        <Timer className="h-4 w-4" />
+                                        <Timer className="h-4 w-4"/>
                                         <span>Implementación rápida</span>
                                     </div>
 
                                     <Button variant="link" className="px-0 text-primary" asChild>
                                         <Link href={c.href}>
-                                            Ver caso <ArrowUpRight className="ml-1 h-4 w-4" />
+                                            Ver caso <ArrowUpRight className="ml-1 h-4 w-4"/>
                                         </Link>
                                     </Button>
                                 </div>
@@ -221,31 +196,54 @@ export function CaseStudies() {
                     ))}
                 </div>
 
-                {/* Bottom CTA mini */}
-                <div className="mt-10 rounded-3xl border border-border/70 bg-card/50 backdrop-blur p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div>
-                        <p className="font-semibold">¿Quieres resultados similares?</p>
-                        <p className="mt-1 text-sm text-muted-foreground">
-                            Te proponemos un plan según tu objetivo: leads, ventas, posicionamiento o web.
-                        </p>
+                <div
+                    className="mt-10 relative overflow-hidden rounded-3xl border border-border/70 bg-card/50 backdrop-blur p-7 md:p-8">
+                    <div className="pointer-events-none absolute inset-0">
+                        <div className="absolute -left-20 -top-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl"/>
+                        <div className="absolute -right-24 -bottom-24 h-72 w-72 rounded-full bg-accent/10 blur-3xl"/>
                     </div>
 
-                    <Button className="rounded-full bg-primary text-primary-foreground hover:opacity-95" asChild>
-                        <Link href="/cotizar">
-                            Solicitar cotización <ArrowUpRight className="ml-2 h-4 w-4" />
-                        </Link>
-                    </Button>
+                    <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+                        <div>
+                            <p className="text-xl md:text-2xl font-extrabold tracking-tight">
+                                ¿Quieres resultados similares?
+                            </p>
+                            <p className="mt-2 text-sm md:text-base text-muted-foreground max-w-2xl">
+                                Te proponemos un plan según tu objetivo: leads, ventas, posicionamiento o web.
+                                En una llamada breve definimos el camino y los entregables.
+                            </p>
+
+                            <div className="mt-4 flex flex-wrap gap-2">
+                                <span className="text-xs font-semibold rounded-full px-3 py-1 border border-border/70 bg-background/60 text-muted-foreground">Diagnóstico rápido</span>
+                                <span className="text-xs font-semibold rounded-full px-3 py-1 border border-border/70 bg-background/60 text-muted-foreground">Plan de acción</span>
+                                <span className="text-xs font-semibold rounded-full px-3 py-1 border border-border/70 bg-background/60 text-muted-foreground">Métricas claras</span>
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row gap-3">
+                            <Button variant="outline" className="rounded-full border-primary/30 hover:border-primary"
+                                    asChild size="lg">
+                                <Link href="/contact">
+                                    Agendar llamada <ArrowUpRight className="ml-2 h-4 w-4"/>
+                                </Link>
+                            </Button>
+
+                            <Button className="rounded-full bg-primary text-primary-foreground hover:opacity-95" asChild
+                                    size="lg">
+                                <Link href="/cotizar">
+                                    Solicitar cotización <ArrowUpRight className="ml-2 h-4 w-4"/>
+                                </Link>
+                            </Button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+            </ContentWidth>
         </section>
     );
 }
 
-function Block({
-                   icon,
-                   label,
-                   text,
-               }: {
+function Block({icon, label, text,}: {
     icon: React.ReactNode;
     label: string;
     text: string;

@@ -3,19 +3,18 @@
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import {ArrowUpRight, PhoneCall} from "lucide-react";
+import {ContentWidth} from "@/components/ContentWidth";
 
 export function Cta() {
     return (
-        <section className="relative">
-            {/* fondo suave con gradiente */}
+        <section id="cta" className="relative mt-20 py-20">
             <div className="pointer-events-none absolute inset-0">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10" />
             </div>
 
-            <div className="container-custom section-padding relative">
+            <ContentWidth>
                 <div className="rounded-[2rem] border border-border/60 bg-card/60 backdrop-blur-xl p-8 md:p-12 shadow-sm">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                        {/* Texto */}
                         <div className="lg:col-span-8">
                             <p className="text-sm text-muted-foreground">
                                 Listo para dar el siguiente paso
@@ -32,11 +31,11 @@ export function Cta() {
                             </p>
                         </div>
 
-                        {/* Acciones */}
                         <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 lg:items-end">
                             <Button
                                 className="rounded-full bg-primary text-primary-foreground hover:opacity-95 w-full sm:w-auto lg:w-full"
                                 asChild
+                                size="lg"
                             >
                                 <Link href="/cotizar">
                                     Solicitar cotización
@@ -48,20 +47,17 @@ export function Cta() {
                                 variant="outline"
                                 className="rounded-full border-primary/30 hover:border-primary w-full sm:w-auto lg:w-full"
                                 asChild
+                                size="lg"
                             >
-                                <Link href="/contacto">
+                                <Link href="/contact">
                                     Agendar llamada
                                     <PhoneCall className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>
-
-                            <p className="mt-2 text-xs text-muted-foreground text-center lg:text-right">
-                                Respuesta rápida · Sin compromiso
-                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
+            </ContentWidth>
         </section>
     );
 }

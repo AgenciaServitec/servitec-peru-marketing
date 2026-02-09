@@ -20,12 +20,7 @@ export function Hero() {
 
     return (
         <ContentWidth>
-            <div className="pointer-events-none absolute inset-0">
-                <div className="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-primary/15 blur-3xl"/>
-                <div className="absolute -top-10 -right-24 h-72 w-72 rounded-full bg-secondary/15 blur-3xl"/>
-                <div className="absolute -bottom-24 left-1/3 h-72 w-72 rounded-full bg-accent/10 blur-3xl"/>
-            </div>
-            <section className="relative overflow-hidden">
+            <section id="hero" className="relative overflow-hidden">
                 <div className="pt-16 relative">
 
                     <div className="mx-auto max-w-4xl text-center">
@@ -50,7 +45,7 @@ export function Hero() {
 
                             <Button variant="outline" className="rounded-full border-primary/30 hover:border-primary"
                                     asChild>
-                                <Link href="/servicios">Ver servicios</Link>
+                                <Link href="/services">Ver servicios</Link>
                             </Button>
                         </div>
                     </div>
@@ -100,7 +95,7 @@ export function Hero() {
                                     <div className="flex items-start justify-between gap-4">
                                         <p className="text-xs text-muted-foreground">Proyectos entregados</p>
                                         <Link
-                                            href="/servicios"
+                                            href="/services"
                                             className="text-xs text-muted-foreground hover:text-foreground transition"
                                         >
                                             Ver todo →
@@ -204,9 +199,11 @@ function HeroCard({
             </div>
 
             <div className="absolute left-4 bottom-4">
-        <span className={cn("inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold backdrop-blur border", accentStyles.pill)}>
-          Ver más →
-        </span>
+        <Button className={cn("inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold backdrop-blur border", accentStyles.pill)}>
+            <Link href="/services">
+                Ver más →
+            </Link>
+        </Button>
             </div>
         </div>
     );

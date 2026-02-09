@@ -17,24 +17,28 @@ import {
 } from "lucide-react";
 import {cn} from "@/lib/utils";
 import {Button} from "@/components/ui/button";
+import {ContentWidth} from "@/components/ContentWidth";
+
+type ServiceId =
+    | "ads-performance"
+    | "seo-local"
+    | "web-dev"
+    | "apps"
+    | "invoicing"
+    | "analytics-automation";
 
 type Service = {
-    id: string;
+    id: ServiceId;
     title: string;
     short: string;
-    bullets: string[];
-    tags: string[];
-    icon: React.ReactNode;
-    // Puedes usar image o gradient. Si no tienes imágenes aún, deja gradient.
+    bullets: readonly string[];
+    tags: readonly string[];
+    icon: React.ElementType;
     image?: string;
-    gradientClass: string;
     ctaHref: string;
 };
 
-const PLACEHOLDER_IMAGE =
-    "https://images.unsplash.com/photo-1582005450386-52b25f82d9bb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-
-const SERVICES: Service[] = [
+const SERVICES: readonly Service[] = [
     {
         id: "ads-performance",
         title: "Google Ads + Meta Ads",
@@ -45,10 +49,9 @@ const SERVICES: Service[] = [
             "Mejora de CPA/ROAS con testing continuo",
         ],
         tags: ["Paid Ads", "Performance"],
-        icon: <Megaphone className="h-5 w-5" />,
-        gradientClass: "from-primary/90 via-secondary/70 to-accent/60",
-        ctaHref: "/servicios/ads",
-        image: PLACEHOLDER_IMAGE
+        icon: Megaphone,
+        ctaHref: "/services/ads",
+        image: "/services/google-ads.png",
     },
     {
         id: "seo-local",
@@ -60,10 +63,9 @@ const SERVICES: Service[] = [
             "Estrategia de keywords y enlaces",
         ],
         tags: ["SEO", "Maps"],
-        icon: <MapPin className="h-5 w-5" />,
-        gradientClass: "from-accent/85 via-primary/55 to-secondary/55",
-        ctaHref: "/servicios/seo",
-        image: PLACEHOLDER_IMAGE
+        icon: MapPin,
+        ctaHref: "/services/seo",
+        image: "/services/seo.png",
     },
     {
         id: "web-dev",
@@ -74,15 +76,14 @@ const SERVICES: Service[] = [
             "Optimización de velocidad (Core Web Vitals)",
             "Integraciones (forms, WhatsApp, CRM, analytics)",
         ],
-        tags: ["Next.js", "Conversion"],
-        icon: <Globe className="h-5 w-5" />,
-        gradientClass: "from-secondary/90 via-primary/60 to-accent/55",
-        ctaHref: "/servicios/web",
-        image: PLACEHOLDER_IMAGE
+        tags: ["Next.js", "Conversión"],
+        icon: Globe,
+        ctaHref: "/services/web",
+        image: "/services/web-developer.png",
     },
     {
         id: "apps",
-        title: "Desarrollo de APPS",
+        title: "Desarrollo de Apps",
         short: "Aplicaciones móviles para procesos y crecimiento del negocio.",
         bullets: [
             "MVP rápido y escalable",
@@ -90,10 +91,9 @@ const SERVICES: Service[] = [
             "Publicación y soporte",
         ],
         tags: ["Mobile", "MVP"],
-        icon: <Smartphone className="h-5 w-5" />,
-        gradientClass: "from-primary/85 via-accent/55 to-secondary/70",
-        ctaHref: "/servicios/apps",
-        image: PLACEHOLDER_IMAGE
+        icon: Smartphone,
+        ctaHref: "/services/apps",
+        image: "/services/app-developer.png",
     },
     {
         id: "invoicing",
@@ -105,40 +105,9 @@ const SERVICES: Service[] = [
             "Soporte y mantenimiento",
         ],
         tags: ["SUNAT", "Integración"],
-        icon: <Receipt className="h-5 w-5" />,
-        gradientClass: "from-accent/70 via-secondary/55 to-primary/60",
-        ctaHref: "/servicios/facturacion",
-        image: PLACEHOLDER_IMAGE
-    },
-    {
-        id: "announce",
-        title: "Anuncia en Internet",
-        short: "Estrategia publicitaria para visibilidad inmediata y demanda.",
-        bullets: [
-            "Campañas por objetivo (leads/ventas)",
-            "Segmentación y audiencias",
-            "Optimización semanal y reportes",
-        ],
-        tags: ["Visibilidad", "Leads"],
-        icon: <ArrowUpRight className="h-5 w-5" />,
-        gradientClass: "from-primary/85 via-primary/50 to-secondary/60",
-        ctaHref: "/servicios/anuncios",
-        image: PLACEHOLDER_IMAGE
-    },
-    {
-        id: "digital-campaign",
-        title: "Campaña Digital",
-        short: "Plan completo: creatividad + pauta + contenido + medición.",
-        bullets: [
-            "Plan mensual y calendario de contenido",
-            "Creatividades y copies",
-            "Métricas claras y mejoras continuas",
-        ],
-        tags: ["Estrategia", "Contenido"],
-        icon: <Sparkles className="h-5 w-5" />,
-        gradientClass: "from-secondary/85 via-accent/50 to-primary/60",
-        ctaHref: "/servicios/campanas",
-        image: PLACEHOLDER_IMAGE
+        icon: Receipt,
+        ctaHref: "/services/facturacion",
+        image: "/services/electronic-facturation.png",
     },
     {
         id: "analytics-automation",
@@ -150,34 +119,48 @@ const SERVICES: Service[] = [
             "Automatización (CRM, WhatsApp, email)",
         ],
         tags: ["Tracking", "Automations"],
-        icon: <LineChart className="h-5 w-5" />,
-        gradientClass: "from-accent/80 via-secondary/55 to-primary/55",
-        ctaHref: "/servicios/analitica",
-        image: PLACEHOLDER_IMAGE
+        icon: LineChart,
+        ctaHref: "/services/analitica",
+        image: "/services/analytics-automation.png",
     },
 ];
 
 export function ServicesShowcase() {
-    const [activeId, setActiveId] = React.useState(SERVICES[0].id);
-    const active = React.useMemo(
-        () => SERVICES.find((s) => s.id === activeId) ?? SERVICES[0],
-        [activeId],
-    );
+    const [activeIndex, setActiveIndex] = React.useState(0);
+    const active = SERVICES[activeIndex];
+
+    const listId = "services-tablist";
+    const panelId = `panel-${active.id}`;
+
+    const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            setActiveIndex((i) => (i + 1) % SERVICES.length);
+        }
+        if (e.key === "ArrowUp") {
+            e.preventDefault();
+            setActiveIndex((i) => (i - 1 + SERVICES.length) % SERVICES.length);
+        }
+        if (e.key === "Home") {
+            e.preventDefault();
+            setActiveIndex(0);
+        }
+        if (e.key === "End") {
+            e.preventDefault();
+            setActiveIndex(SERVICES.length - 1);
+        }
+    };
 
     return (
-        <section className="relative">
-            <div className="pointer-events-none absolute inset-0">
-                <div className="absolute -top-28 -left-24 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
-                <div className="absolute -top-24 -right-24 h-80 w-80 rounded-full bg-secondary/10 blur-3xl" />
-            </div>
-
-            <div className="container-custom section-padding relative">
+        <section id="services" className="relative my-20 py-20">
+            <ContentWidth>
                 <div className="flex items-end justify-between gap-4">
                     <div>
-                        <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight">Servicios que impulsan tu crecimiento</h2>
+                        <h2 data-snake-title className="mt-3 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight">
+                            Servicios que impulsan tu crecimiento
+                        </h2>
                         <p className="mt-3 max-w-2xl text-muted-foreground">
-                            Elige un servicio y revisa qué incluye. Estrategia + ejecución +
-                            medición, con enfoque en resultados.
+                            Elige un servicio y revisa qué incluye. Estrategia + ejecución + medición, con enfoque en resultados.
                         </p>
                     </div>
 
@@ -185,80 +168,72 @@ export function ServicesShowcase() {
                         variant="outline"
                         className="hidden md:inline-flex rounded-full border-primary/30 hover:border-primary"
                         asChild
+                        size="lg"
                     >
-                        <Link href="/servicios">Ver todos</Link>
+                        <Link href="/services">Ver todos</Link>
                     </Button>
                 </div>
 
-                {/* Content */}
                 <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-                    {/* Left list */}
                     <div className="lg:col-span-5">
-                        <div className="rounded-3xl border border-border/70 bg-card/50 backdrop-blur p-3 md:p-4">
+                        <div
+                            id={listId}
+                            className="rounded-3xl border border-border/70 bg-card/50 backdrop-blur p-3 md:p-4 outline-none"
+                            role="tablist"
+                            aria-label="Lista de servicios"
+                            tabIndex={0}
+                            onKeyDown={onKeyDown}
+                        >
                             <div className="px-2 pt-2 pb-3">
                                 <p className="text-sm font-semibold">Lista de servicios</p>
-                                <p className="text-sm text-muted-foreground">Elija un servicio</p>
+                                <p className="text-sm text-muted-foreground">Elige un servicio</p>
                             </div>
 
                             <div className="space-y-1">
                                 {SERVICES.map((s, idx) => {
-                                    const isActive = s.id === activeId;
+                                    const isActive = idx === activeIndex;
+                                    const Icon = s.icon;
+                                    const tabId = `tab-${s.id}`;
+                                    const thisPanelId = `panel-${s.id}`;
+
                                     return (
                                         <button
                                             key={s.id}
+                                            id={tabId}
                                             type="button"
-                                            onClick={() => setActiveId(s.id)}
+                                            onClick={() => setActiveIndex(idx)}
+                                            role="tab"
+                                            aria-selected={isActive}
+                                            aria-controls={thisPanelId}
                                             className={cn(
                                                 "w-full text-left rounded-2xl px-3 py-3 md:px-4 md:py-4",
-                                                "border border-transparent transition-all",
-                                                "hover:bg-muted/50",
-                                                isActive &&
-                                                "bg-muted/70 border-border/70 shadow-sm",
+                                                "border transition-all outline-none",
+                                                "focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                                                isActive
+                                                    ? "bg-muted/70 border-border/70 shadow-sm"
+                                                    : "border-transparent hover:bg-muted/50"
                                             )}
                                         >
                                             <div className="flex items-center gap-3">
                                                 <div
                                                     className={cn(
                                                         "h-10 w-10 rounded-2xl grid place-items-center border",
-                                                        isActive
-                                                            ? "bg-background border-border/70"
-                                                            : "bg-background/60 border-border/50",
+                                                        isActive ? "bg-background border-border/70" : "bg-background/60 border-border/50"
                                                     )}
                                                 >
-                          <span
-                              className={cn(
-                                  "text-muted-foreground",
-                                  isActive && "text-foreground",
-                              )}
-                          >
-                            {s.icon}
-                          </span>
+                                                    <Icon className={cn("h-5 w-5", isActive ? "text-foreground" : "text-muted-foreground")} />
                                                 </div>
 
                                                 <div className="min-w-0 flex-1">
                                                     <div className="flex items-center justify-between gap-3">
-                                                        <p
-                                                            className={cn(
-                                                                "font-semibold truncate",
-                                                                !isActive && "text-muted-foreground",
-                                                            )}
-                                                        >
+                                                        <p className={cn("font-semibold truncate", !isActive && "text-muted-foreground")}>
                                                             {s.title}
                                                         </p>
-                                                        <span
-                                                            className={cn(
-                                                                "text-xs tabular-nums",
-                                                                isActive
-                                                                    ? "text-foreground"
-                                                                    : "text-muted-foreground",
-                                                            )}
-                                                        >
+                                                        <span className={cn("text-xs tabular-nums", isActive ? "text-foreground" : "text-muted-foreground")}>
                               {String(idx + 1).padStart(2, "0")}
                             </span>
                                                     </div>
-                                                    <p className="mt-1 text-xs text-muted-foreground line-clamp-1">
-                                                        {s.short}
-                                                    </p>
+                                                    <p className="mt-1 text-xs text-muted-foreground line-clamp-1">{s.short}</p>
                                                 </div>
                                             </div>
                                         </button>
@@ -272,21 +247,23 @@ export function ServicesShowcase() {
                                     className="w-full rounded-full border-primary/30 hover:border-primary"
                                     asChild
                                 >
-                                    <Link href="/servicios">Ver todos</Link>
+                                    <Link href="/services">Ver todos</Link>
                                 </Button>
                             </div>
                         </div>
                     </div>
 
-                    {/* Right preview */}
-                    {/* Right preview */}
                     <div className="lg:col-span-7">
                         <div className="rounded-3xl border border-border/70 bg-card/50 backdrop-blur p-3 md:p-4">
-                            <div className="relative overflow-hidden rounded-2xl border border-border/60">
+                            <div
+                                id={panelId}
+                                role="tabpanel"
+                                aria-labelledby={`tab-${active.id}`}
+                                className="relative overflow-hidden rounded-2xl border border-border/60"
+                            >
                                 <div className="relative w-full aspect-[16/9] md:aspect-[2.2/1]">
-                                    {/* Imagen */}
                                     <Image
-                                        src={active.image!}
+                                        src={active.image ?? ""}
                                         alt={active.title}
                                         fill
                                         className="object-cover"
@@ -294,10 +271,12 @@ export function ServicesShowcase() {
                                         sizes="(max-width: 1024px) 100vw, 60vw"
                                     />
 
-                                    {/* Overlay oscuro para legibilidad */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/10" />
+                                    <div className="absolute inset-0 bg-black/25"/>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20"/>
 
-                                    {/* Contenido */}
+                                    <div
+                                        className="pointer-events-none absolute -left-20 -top-20 h-56 w-56 rounded-full bg-white/10 blur-3xl"/>
+
                                     <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
                                         <div className="max-w-xl">
                                             <p className="text-white/90 text-sm font-semibold">
@@ -318,25 +297,27 @@ export function ServicesShowcase() {
                                                         key={t}
                                                         className="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white border border-white/20 backdrop-blur"
                                                     >
-                  {t}
-                </span>
+                            {t}
+                          </span>
                                                 ))}
                                             </div>
 
                                             <div className="mt-6 flex flex-col sm:flex-row gap-3">
                                                 <Button
-                                                    className="rounded-full bg-white text-foreground hover:opacity-95"
+                                                    className="rounded-full bg-white text-foreground hover:bg-white/90"
                                                     asChild
+                                                    size="lg"
                                                 >
                                                     <Link href={active.ctaHref}>
-                                                        Ver detalle <ArrowUpRight className="ml-2 h-4 w-4" />
+                                                        Ver detalle <ArrowUpRight className="ml-2 h-4 w-4"/>
                                                     </Link>
                                                 </Button>
 
                                                 <Button
                                                     variant="outline"
-                                                    className="rounded-full border-white/35 text-white hover:bg-white/10"
+                                                    className="rounded-full border-white/35 hover:text-white hover:bg-white/10"
                                                     asChild
+                                                    size="lg"
                                                 >
                                                     <Link href="/cotizar">Solicitar cotización</Link>
                                                 </Button>
@@ -344,36 +325,29 @@ export function ServicesShowcase() {
                                         </div>
                                     </div>
 
-                                    {/* Puntito decorativo (como el modelo) */}
-                                    <div className="absolute left-5 top-5 h-3 w-3 rounded-full bg-white/80" />
+                                    <div className="absolute left-5 top-5 h-3 w-3 rounded-full bg-white/80"/>
                                 </div>
                             </div>
 
-                            {/* bullets row */}
                             <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
                                 {active.bullets.map((b) => (
-                                    <div
-                                        key={b}
-                                        className="rounded-2xl border border-border/70 bg-background/60 p-4"
-                                    >
+                                    <div key={b} className="rounded-2xl border border-border/70 bg-background/60 p-4">
                                         <div className="flex items-start gap-2">
-            <span className="mt-0.5 text-primary">
-              <Check className="h-4 w-4" />
-            </span>
+                      <span className="mt-0.5 text-primary">
+                        <Check className="h-4 w-4" />
+                      </span>
                                             <p className="text-sm text-muted-foreground">{b}</p>
                                         </div>
                                     </div>
                                 ))}
                             </div>
 
-                            {/* tiny note */}
                             <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
                                 <span className="h-2 w-2 rounded-full bg-accent" />
                                 <span>Si no sabes cuál elegir, te guiamos en una llamada breve.</span>
                             </div>
                         </div>
 
-                        {/* KPI cards */}
                         <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
                             <KpiCard label="Estrategia" value="Plan claro" icon={<BarChart3 className="h-4 w-4" />} />
                             <KpiCard label="Ejecución" value="Velocidad" icon={<Sparkles className="h-4 w-4" />} />
@@ -381,9 +355,8 @@ export function ServicesShowcase() {
                             <KpiCard label="Soporte" value="Continuo" icon={<ArrowUpRight className="h-4 w-4" />} />
                         </div>
                     </div>
-
                 </div>
-            </div>
+            </ContentWidth>
         </section>
     );
 }
