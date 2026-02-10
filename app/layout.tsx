@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="es">
         <body className="min-h-screen">
         <div className="relative overflow-x-hidden">
-            <AmbientMotion />
+            {/*<AmbientMotion />*/}
             <CustomCursor />
             <HeaderLayout />
             <main className="page-content">{children}</main>
