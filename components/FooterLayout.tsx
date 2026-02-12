@@ -53,7 +53,7 @@ export function FooterLayout() {
                 <Link href="/portfolio">Ver trabajos</Link>
               </Button>
               <Button className="rounded-full bg-primary text-primary-foreground hover:opacity-95" asChild size="lg">
-                <Link href="/cotizar">Solicitar cotización</Link>
+                <Link href="/quote">Solicitar cotización</Link>
               </Button>
             </div>
           </div>

@@ -230,7 +230,7 @@ export function CaseStudies() {
 
                             <Button className="rounded-full bg-primary text-primary-foreground hover:opacity-95" asChild
                                     size="lg">
-                                <Link href="/cotizar">
+                                <Link href="/quote">
                                     Solicitar cotización <ArrowUpRight className="ml-2 h-4 w-4"/>
                                 </Link>
                             </Button>

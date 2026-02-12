@@ -158,7 +158,7 @@ export function HeaderLayout() {
                     className="rounded-full bg-primary text-primary-foreground hover:opacity-95"
                     asChild
                 >
-                  <Link href="/cotizar">Solicitar cotización</Link>
+                  <Link href="/quote">Solicitar cotización</Link>
                 </Button>
               </div>
             </div>

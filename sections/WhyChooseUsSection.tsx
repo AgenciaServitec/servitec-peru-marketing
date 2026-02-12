@@ -95,7 +95,7 @@ export function WhyChooseUsSection() {
                                 asChild
                                 size="lg"
                             >
-                                <Link href="/cotizar">Solicitar cotización</Link>
+                                <Link href="/quote">Solicitar cotización</Link>
                             </Button>
                         </div>
                     </div>
@@ -200,7 +200,7 @@ export function WhyChooseUsSection() {
                                     asChild
                                     size="lg"
                                 >
-                                    <Link href="/cotizar">
+                                    <Link href="/quote">
                                         Solicitar cotización <ArrowUpRight className="ml-2 h-4 w-4" />
                                     </Link>
                                 </Button>

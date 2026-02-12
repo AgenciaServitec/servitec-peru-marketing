@@ -319,7 +319,7 @@ export function ServicesShowcase() {
                                                     asChild
                                                     size="lg"
                                                 >
-                                                    <Link href="/cotizar">Solicitar cotización</Link>
+                                                    <Link href="/quote">Solicitar cotización</Link>
                                                 </Button>
                                             </div>
                                         </div>

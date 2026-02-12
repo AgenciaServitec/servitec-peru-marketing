@@ -40,7 +40,7 @@ export function Hero() {
                         <div className="mt-7 flex flex-col sm:flex-row sm:justify-center gap-3">
                             <Button className="rounded-full bg-primary text-primary-foreground hover:opacity-95"
                                     asChild>
-                                <Link href="/cotizar">Solicitar cotización</Link>
+                                <Link href="/quote">Solicitar cotización</Link>
                             </Button>
 
                             <Button variant="outline" className="rounded-full border-primary/30 hover:border-primary"
