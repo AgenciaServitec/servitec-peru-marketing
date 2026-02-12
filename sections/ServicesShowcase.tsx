@@ -319,7 +319,7 @@ export function ServicesShowcase() {
                                                     asChild
                                                     size="lg"
                                                 >
-                                                    <Link href="/quote">Solicitar cotización</Link>
+                                                    <Link href="https://api.whatsapp.com/send?phone=51941801827" target="_blank">Solicitar cotización</Link>
                                                 </Button>
                                             </div>
                                         </div>
