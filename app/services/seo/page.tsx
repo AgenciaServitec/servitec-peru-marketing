@@ -240,7 +240,7 @@ function StrategySection() {
                                 <p>{`<meta name="description" content="..." />`}</p>
                                 <p>{`<h1>Palabra Clave Principal</h1>`}</p>
                                 <p className="text-emerald-500">{``}</p>
-                                <p>{`<link rel="canonical" ... />`}</p>
+                                <p>{`<link rel="canonical" />`}</p>
                             </div>
 
                             <div className="absolute bottom-8 left-6 right-6 z-20">
