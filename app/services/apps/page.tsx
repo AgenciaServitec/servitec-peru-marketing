@@ -1,21 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ContentWidth } from "@/components/ContentWidth";
-import {
-    AppWindow,
-    ArrowRight,
-    Check,
-    Code2,
-    Layers,
-    LayoutDashboard,
-    Smartphone,
-    Store,
-    Tablet,
-    Zap,
-} from "lucide-react";
+import {Button} from "@/components/ui/button";
+import {Badge} from "@/components/ui/badge";
+import {ContentWidth} from "@/components/ContentWidth";
+import {AppWindow, ArrowRight, Check, Code2, LayoutDashboard, Smartphone, Store, Tablet, Zap,} from "lucide-react";
 
 export default function AppsServicePage() {
     return (

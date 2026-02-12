@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
-import {ArrowUpRight, PhoneCall} from "lucide-react";
+import {ArrowUpRight} from "lucide-react";
 import {ContentWidth} from "@/components/ContentWidth";
 
 export function Cta() {
