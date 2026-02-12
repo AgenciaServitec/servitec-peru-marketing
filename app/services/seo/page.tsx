@@ -248,7 +248,7 @@ function StrategySection() {
                                     <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
                                     <span className="text-white font-bold text-lg">Indexado Correctamente</span>
                                 </div>
-                                <p className="text-slate-400 text-sm">Tu sitio está listo para competir.</p>
+                                <p className="text-slate-400 text-sm">Tu sitio está listo para competir</p>
                             </div>
                         </div>
                     </div>
