@@ -27,21 +27,21 @@ export function FinalCTA() {
 
                         <div className="flex flex-col sm:flex-row gap-3">
                             <Button className="rounded-full bg-primary text-primary-foreground hover:opacity-95" asChild size="lg">
-                                <Link href="/quote">
+                                <Link href="https://api.whatsapp.com/send?phone=941801827" target="_blank">
                                     Solicitar cotización <ArrowUpRight className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>
 
-                            <Button
-                                variant="outline"
-                                className="rounded-full border-primary/30 hover:border-primary"
-                                asChild
-                                size="lg"
-                            >
-                                <Link href="/contact">
-                                    Agendar llamada <ArrowUpRight className="ml-2 h-4 w-4" />
-                                </Link>
-                            </Button>
+                            {/*<Button*/}
+                            {/*    variant="outline"*/}
+                            {/*    className="rounded-full border-primary/30 hover:border-primary"*/}
+                            {/*    asChild*/}
+                            {/*    size="lg"*/}
+                            {/*>*/}
+                            {/*    <Link href="/contact">*/}
+                            {/*        Agendar llamada <ArrowUpRight className="ml-2 h-4 w-4" />*/}
+                            {/*    </Link>*/}
+                            {/*</Button>*/}
                         </div>
                     </div>
                 </div>

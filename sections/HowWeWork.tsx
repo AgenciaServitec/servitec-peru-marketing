@@ -74,7 +74,7 @@ export function HowWeWork() {
                         </Button>
 
                         <Button className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90" asChild size="lg">
-                            <Link href="/quote">Solicitar cotización</Link>
+                            <Link href="https://wa.me/51941801827" target="_blank">Solicitar cotización</Link>
                         </Button>
                     </div>
                 </div>

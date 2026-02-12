@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import Link from "next/link";
-import {ContentWidth} from "@/components/ContentWidth";
-import {Button} from "@/components/ui/button";
-import {cn} from "@/lib/utils";
-import {ArrowUpRight, CheckCircle2, Mail, MessageCircle, Phone,} from "lucide-react";
+import { ContentWidth } from "@/components/ContentWidth";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { ArrowUpRight, CheckCircle2, Mail, MessageCircle, Phone, } from "lucide-react";
 
 type ServiceType =
     | "Google Ads + Meta Ads"
@@ -24,8 +24,8 @@ type FormState = {
     phone: string;
     service: ServiceType;
     preference: ContactPref;
-    budget: string; // optional
-    timeline: string; // optional
+    budget: string;
+    timeline: string;
     message: string;
 };
 
@@ -108,24 +108,34 @@ export default function Contact() {
         setErrors(v);
         if (Object.keys(v).length) return;
 
+        setLoading(true);
+
         try {
-            setLoading(true);
+            const phoneNumber = "51941801827";
 
-            const res = await fetch("/api/contact", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(form),
-            });
+            const message =
+                `Hola Servitec, quiero cotizar un proyecto:
 
-            if (!res.ok) {
-                const payload = await res.json().catch(() => null);
-                throw new Error(payload?.message ?? "No se pudo enviar. Intenta nuevamente.");
-            }
+👤 *Nombre:* ${form.fullName}
+📧 *Email:* ${form.email}
+📱 *Teléfono:* ${form.phone}
+--------------------------------
+🛠 *Servicio:* ${form.service}
+💰 *Presupuesto:* ${form.budget}
+⏳ *Plazo:* ${form.timeline}
+📞 *Preferencia:* ${form.preference}
+--------------------------------
+📝 *Mensaje:*
+${form.message}`;
 
-            setSuccess("Listo ✅ Te contactaremos en breve.");
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+
+            window.open(whatsappUrl, "_blank");
+
+            setSuccess("Redirigiendo a WhatsApp...");
             setForm(initialState);
         } catch (err: any) {
-            setServerError(err?.message ?? "Ocurrió un error. Intenta nuevamente.");
+            setServerError("Ocurrió un error al intentar abrir WhatsApp.");
         } finally {
             setLoading(false);
         }
@@ -156,7 +166,7 @@ export default function Contact() {
                             </Link>
                         </Button>
                         <Button className="rounded-full bg-primary text-primary-foreground hover:opacity-95" asChild>
-                            <Link href="/quote">
+                            <Link href="https://api.whatsapp.com/send?phone=941801827" target="_blank">
                                 Solicitar cotización <ArrowUpRight className="ml-2 h-4 w-4" />
                             </Link>
                         </Button>
@@ -164,7 +174,6 @@ export default function Contact() {
                 </div>
 
                 <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-                    {/* Form */}
                     <section className="lg:col-span-7">
                         <div className="rounded-3xl border border-border/70 bg-card/50 backdrop-blur p-6 md:p-8">
                             <div className="flex items-center justify-between gap-3">
@@ -183,7 +192,7 @@ export default function Contact() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <Field
                                         label="Nombres y apellidos"
-                                        placeholder="Ej: Ángel Emilio Gala"
+                                        placeholder="Ej: Juan Federico Lopez"
                                         value={form.fullName}
                                         onChange={(v) => setField("fullName", v)}
                                         error={errors.fullName}
@@ -249,7 +258,7 @@ export default function Contact() {
                                     <div className="rounded-2xl border border-border/70 bg-background/60 p-4 flex items-start gap-3">
                                         <CheckCircle2 className="h-5 w-5 text-accent mt-0.5" />
                                         <div>
-                                            <p className="font-semibold">Mensaje enviado</p>
+                                            <p className="font-semibold">Mensaje listo</p>
                                             <p className="text-sm text-muted-foreground">{success}</p>
                                         </div>
                                     </div>
@@ -269,7 +278,7 @@ export default function Contact() {
                                         className="rounded-full bg-primary text-primary-foreground hover:opacity-95"
                                         disabled={loading}
                                     >
-                                        {loading ? "Enviando..." : "Enviar mensaje"}
+                                        {loading ? "Abriendo WhatsApp..." : "Enviar mensaje"}
                                         <ArrowUpRight className="ml-2 h-4 w-4" />
                                     </Button>
 
@@ -308,19 +317,19 @@ export default function Contact() {
                                     icon={<MessageCircle className="h-4 w-4" />}
                                     title="WhatsApp"
                                     desc="Respuesta más rápida"
-                                    href="/contact" // cámbialo a tu wa.me si quieres
+                                    href="https://api.whatsapp.com/send?phone=941801827"
                                 />
                                 <QuickLink
                                     icon={<Mail className="h-4 w-4" />}
                                     title="Email"
                                     desc="Para enviar detalles"
-                                    href="/contact"
+                                    href="mailto:contacto@servitec.pe"
                                 />
                                 <QuickLink
                                     icon={<Phone className="h-4 w-4" />}
                                     title="Llamada"
                                     desc="Agenda una llamada breve"
-                                    href="/contact"
+                                    href="tel:+51941801827"
                                 />
                             </div>
 
@@ -455,6 +464,7 @@ function QuickLink({
     return (
         <Link
             href={href}
+            target={href.startsWith("http") ? "_blank" : undefined}
             className="block rounded-2xl border border-border/70 bg-background/60 p-4 hover:bg-muted/40 transition-colors"
         >
             <div className="flex items-start gap-3">

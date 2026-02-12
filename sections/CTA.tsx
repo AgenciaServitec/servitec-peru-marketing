@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
-import {ArrowUpRight, PhoneCall} from "lucide-react";
+import {ArrowUpRight} from "lucide-react";
 import {ContentWidth} from "@/components/ContentWidth";
 
 export function Cta() {
@@ -37,23 +37,23 @@ export function Cta() {
                                 asChild
                                 size="lg"
                             >
-                                <Link href="/quote">
+                                <Link href="https://api.whatsapp.com/send?phone=941801827" target="_blank">
                                     Solicitar cotización
                                     <ArrowUpRight className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>
 
-                            <Button
-                                variant="outline"
-                                className="rounded-full border-primary/30 hover:border-primary w-full sm:w-auto lg:w-full"
-                                asChild
-                                size="lg"
-                            >
-                                <Link href="/contact">
-                                    Agendar llamada
-                                    <PhoneCall className="ml-2 h-4 w-4" />
-                                </Link>
-                            </Button>
+                            {/*<Button*/}
+                            {/*    variant="outline"*/}
+                            {/*    className="rounded-full border-primary/30 hover:border-primary w-full sm:w-auto lg:w-full"*/}
+                            {/*    asChild*/}
+                            {/*    size="lg"*/}
+                            {/*>*/}
+                            {/*    <Link href="/contact">*/}
+                            {/*        Agendar llamada*/}
+                            {/*        <PhoneCall className="ml-2 h-4 w-4" />*/}
+                            {/*    </Link>*/}
+                            {/*</Button>*/}
                         </div>
                     </div>
                 </div>

@@ -81,16 +81,16 @@ export function CaseStudies() {
                         </p>
                     </div>
 
-                    <Button
-                        variant="outline"
-                        className="rounded-full border-primary/30 hover:border-primary"
-                        asChild
-                        size="lg"
-                    >
-                        <Link href="/cases">
-                            Ver todos <ArrowUpRight className="ml-2 h-4 w-4"/>
-                        </Link>
-                    </Button>
+                    {/*<Button*/}
+                    {/*    variant="outline"*/}
+                    {/*    className="rounded-full border-primary/30 hover:border-primary"*/}
+                    {/*    asChild*/}
+                    {/*    size="lg"*/}
+                    {/*>*/}
+                    {/*    <Link href="/cases">*/}
+                    {/*        Ver todos <ArrowUpRight className="ml-2 h-4 w-4"/>*/}
+                    {/*    </Link>*/}
+                    {/*</Button>*/}
                 </div>
 
                 <div className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -230,7 +230,7 @@ export function CaseStudies() {
 
                             <Button className="rounded-full bg-primary text-primary-foreground hover:opacity-95" asChild
                                     size="lg">
-                                <Link href="/quote">
+                                <Link href="https://wa.me/51941801827" target="_blank">
                                     Solicitar cotización <ArrowUpRight className="ml-2 h-4 w-4"/>
                                 </Link>
                             </Button>

@@ -17,8 +17,8 @@ import {
 } from "@/components/ui/navigation-menu";
 
 const NAV = [
-  { label: "Portafolio", href: "/portfolio" },
-  { label: "Precios", href: "/prices" },
+  // { label: "Portafolio", href: "/portfolio" },
+  // { label: "Precios", href: "/prices" },
   { label: "Contacto", href: "/contact" },
 ];
 
@@ -133,7 +133,6 @@ export function HeaderLayout() {
                   </NavigationMenuList>
                 </NavigationMenu>
 
-                {/* Resto de links */}
                 {NAV.map((item) => (
                     <NavLink key={item.href} href={item.href} active={isActive(item.href)}>
                       {item.label}
@@ -141,7 +140,6 @@ export function HeaderLayout() {
                 ))}
               </div>
 
-              {/* Actions */}
               <div className="flex items-center gap-2">
                 <Button
                     variant="outline"
@@ -151,20 +149,19 @@ export function HeaderLayout() {
                     )}
                     asChild
                 >
-                  <Link href="/contact">Agendar llamada</Link>
+                  <Link href="https://api.whatsapp.com/send?phone=51941801827" target="_blank">Agendar llamada</Link>
                 </Button>
 
                 <Button
                     className="rounded-full bg-primary text-primary-foreground hover:opacity-95"
                     asChild
                 >
-                  <Link href="/quote">Solicitar cotización</Link>
+                  <Link href="https://api.whatsapp.com/send?phone=51941801827" target="_blank">Solicitar cotización</Link>
                 </Button>
               </div>
             </div>
           </ContentWidth>
 
-          {/* Línea de marca (sutil) */}
           <div className="h-[1px] w-full bg-gradient-to-r from-primary/60 via-secondary/60 to-accent/60 opacity-70" />
         </div>
       </header>
