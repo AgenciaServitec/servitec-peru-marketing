@@ -329,7 +329,7 @@ function MobileNav({ pathname }: { pathname: string }) {
                             onClick={closeSheet}
                             className="text-sm font-semibold text-primary mt-2 flex items-center gap-1"
                         >
-                          Ver todo <ArrowRight className="h-3 w-3" />
+                          {"Ver Todo"}<ArrowRight className="h-3 w-3" />
                         </Link>
                       </div>
                     </AccordionContent>
