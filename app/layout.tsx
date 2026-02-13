@@ -1,15 +1,17 @@
 import "./globals.css";
-import {HeaderLayout} from "@/components/HeaderLayout";
-import {FooterLayout} from "@/components/FooterLayout";
-import {Metadata} from "next";
-import {CustomCursor} from "@/components/CustomCursor";
-import {AmbientMotion} from "@/components/AmbientMotion";
+import { HeaderLayout } from "@/components/HeaderLayout";
+import { FooterLayout } from "@/components/FooterLayout";
+import { Metadata } from "next";
+import { CustomCursor } from "@/components/CustomCursor";
+// import { AmbientMotion } from "@/components/AmbientMotion";
 
 export const metadata: Metadata = {
     title: "Servitec Publicidad Digital",
-    description: "Markting y Desarrollo Web",
+    description: "Marketing y Desarrollo Web",
     icons: {
-        icon: "/logo-servitec-marketing.png",
+        icon: "/servitec-marketing.png",
+        shortcut: "/servitec-marketing.png",
+        apple: "/servitec-marketing.png",
     },
 };
 

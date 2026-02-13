@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import {Button} from "@/components/ui/button";
-import {cn} from "@/lib/utils";
-import {ContentWidth} from "@/components/ContentWidth";
-import {useTypewriter} from "@/hooks/useTypewriter";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { ContentWidth } from "@/components/ContentWidth";
+import { useTypewriter } from "@/hooks/useTypewriter";
 
 const phrases = [
     "campañas de anuncios que generan leads",
@@ -15,16 +15,13 @@ const phrases = [
 ];
 
 export function Hero() {
-
     const typedText = useTypewriter(phrases);
 
     return (
         <ContentWidth>
             <section id="hero" className="relative overflow-hidden">
                 <div className="pt-16 relative">
-
                     <div className="mx-auto max-w-4xl text-center">
-
                         <h1 className="mt-5 font-extrabold tracking-tight leading-[0.95] text-[clamp(2.4rem,5vw,4.5rem)]">
                             Marketing digital y desarrollo web
                         </h1>
@@ -32,32 +29,38 @@ export function Hero() {
                         <p className="mt-3 text-lg md:text-xl font-medium">
                             para{" "}
                             <span className="text-primary font-semibold">
-    {typedText}
+                {typedText}
                                 <span className="animate-pulse">|</span>
-  </span>
+              </span>
                         </p>
 
                         <div className="mt-7 flex flex-col sm:flex-row sm:justify-center gap-3">
-                            <Button className="rounded-full bg-primary text-primary-foreground hover:opacity-95"
-                                    asChild>
-                                <Link href="https://wa.me/51941801827" target="_blank">Solicitar cotización</Link>
+                            <Button
+                                className="rounded-full bg-primary text-primary-foreground hover:opacity-95"
+                                asChild
+                            >
+                                <Link href="https://wa.me/51941801827" target="_blank">
+                                    Solicitar cotización
+                                </Link>
                             </Button>
 
-                            <Button variant="outline" className="rounded-full border-primary/30 hover:border-primary"
-                                    asChild>
+                            <Button
+                                variant="outline"
+                                className="rounded-full border-primary/30 hover:border-primary"
+                                asChild
+                            >
                                 <Link href="/services">Ver servicios</Link>
                             </Button>
                         </div>
                     </div>
 
                     <div className="mt-10 md:mt-14">
-                        <div
-                            className="rounded-3xl border border-border/70 bg-card/50 backdrop-blur p-3 md:p-4 shadow-sm">
+                        <div className="rounded-3xl border border-border/70 bg-card/50 backdrop-blur p-3 md:p-4 shadow-sm">
                             <div
                                 className={cn(
-                                    "flex gap-3 md:gap-4",
-                                    "overflow-x-auto md:overflow-visible",
-                                    "snap-x snap-mandatory [-webkit-overflow-scrolling:touch]",
+                                    "grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row",
+                                    "gap-3 md:gap-4",
+                                    "lg:overflow-x-auto lg:snap-x lg:snap-mandatory lg:[-webkit-overflow-scrolling:touch]",
                                     "pb-1"
                                 )}
                             >
@@ -67,7 +70,7 @@ export function Hero() {
                                     title="Publicidad digital"
                                     subtitle="Campañas en Google y Meta enfocadas en leads y ventas."
                                     rightTag="01"
-                                    className="w-[260px] sm:w-[300px] md:w-[320px] lg:w-[340px]"
+                                    className="w-full lg:w-[340px]"
                                 />
 
                                 <HeroCard
@@ -76,7 +79,7 @@ export function Hero() {
                                     title="Branding y diseño web"
                                     subtitle="Identidad visual y sitios web rápidos, claros y optimizados para conversión."
                                     rightTag="02"
-                                    className="w-[260px] sm:w-[300px] md:w-[320px] lg:w-[340px]"
+                                    className="w-full lg:w-[340px]"
                                 />
 
                                 <HeroCard
@@ -85,15 +88,15 @@ export function Hero() {
                                     title="SEO y contenido estratégico"
                                     subtitle="Posicionamiento orgánico y contenido pensado para atraer clientes."
                                     rightTag="03"
-                                    className="w-[260px] sm:w-[300px] md:w-[320px] lg:w-[340px]"
+                                    className="w-full lg:w-[340px]"
                                 />
 
-                                <div
-                                    className="snap-start relative overflow-hidden rounded-2xl border border-border/70 bg-background p-5 min-h-[180px] w-[240px] sm:w-[260px] md:w-[280px]">
-                                    <div
-                                        className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-secondary/15 blur-2xl"/>
+                                <div className="relative overflow-hidden rounded-2xl border border-border/70 bg-background p-5 w-full lg:w-[280px] min-h-[160px] lg:min-h-[180px] lg:snap-start">
+                                    <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-secondary/15 blur-2xl" />
                                     <div className="flex items-start justify-between gap-4">
-                                        <p className="text-xs text-muted-foreground">Proyectos entregados</p>
+                                        <p className="text-xs text-muted-foreground">
+                                            Proyectos entregados
+                                        </p>
                                         <Link
                                             href="/services"
                                             className="text-xs text-muted-foreground hover:text-foreground transition"
@@ -102,13 +105,17 @@ export function Hero() {
                                         </Link>
                                     </div>
 
-                                    <div className="mt-7">
-                                        <p className="text-5xl font-extrabold tracking-tight">4.9 ★</p>
-                                        <p className="mt-1 text-sm text-muted-foreground">valoración promedio</p>
+                                    <div className="mt-5 lg:mt-7">
+                                        <p className="text-4xl lg:text-5xl font-extrabold tracking-tight">
+                                            4.9 ★
+                                        </p>
+                                        <p className="mt-1 text-sm text-muted-foreground">
+                                            valoración promedio
+                                        </p>
                                     </div>
 
-                                    <div className="mt-7 flex items-center gap-2">
-                                        <span className="h-2 w-2 rounded-full bg-primary"/>
+                                    <div className="mt-5 lg:mt-7 flex items-center gap-2">
+                                        <span className="h-2 w-2 rounded-full bg-primary" />
                                         <p className="text-xs text-muted-foreground">
                                             Resultados medibles desde el inicio
                                         </p>
@@ -124,12 +131,10 @@ export function Hero() {
 }
 
 function HeroCard({
-                      tone,
                       title,
                       subtitle,
                       rightTag,
                       className,
-                      variant = "image",
                       accent = "blue",
                   }: {
     tone: "primary" | "neutral" | "warm";
@@ -170,23 +175,30 @@ function HeroCard({
     return (
         <div
             className={cn(
-                "snap-start relative overflow-hidden rounded-2xl border p-5",
-                "min-h-[180px] md:min-h-[350px]",
-                "bg-gradient-to-br",
+                "relative overflow-hidden rounded-2xl border p-5",
+                "min-h-[160px] lg:min-h-[350px]",
+                "bg-gradient-to-br lg:snap-start",
                 accentStyles.shell,
                 className
             )}
         >
-            <div className={cn("pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full blur-3xl", accentStyles.glow)} />
+            <div
+                className={cn(
+                    "pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full blur-3xl",
+                    accentStyles.glow
+                )}
+            />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/[0.03] to-transparent" />
 
             <div className="relative flex items-start justify-between gap-3">
                 <p className="text-xs font-semibold text-foreground/80">{subtitle}</p>
-                <span className="text-xs font-semibold text-foreground/60">{rightTag}</span>
+                <span className="text-xs font-semibold text-foreground/60">
+          {rightTag}
+        </span>
             </div>
 
-            <div className="relative mt-7">
-                <p className="whitespace-pre-line text-3xl font-extrabold leading-[1.02] tracking-tight">
+            <div className="relative mt-5 lg:mt-7">
+                <p className="whitespace-pre-line text-2xl lg:text-3xl font-extrabold leading-[1.02] tracking-tight">
                     {title}
                 </p>
 
@@ -198,14 +210,17 @@ function HeroCard({
                 </div>
             </div>
 
-            <div className="absolute left-4 bottom-4">
-        <Button className={cn("inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold backdrop-blur border", accentStyles.pill)}>
-            <Link href="/services">
-                Ver más →
-            </Link>
-        </Button>
+            <div className="mt-6 lg:absolute lg:left-4 lg:bottom-4">
+                <Button
+                    className={cn(
+                        "inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold backdrop-blur border",
+                        accentStyles.pill
+                    )}
+                    asChild
+                >
+                    <Link href="/services">Ver más →</Link>
+                </Button>
             </div>
         </div>
     );
 }
-

@@ -2,10 +2,11 @@
 
 import * as React from "react";
 import Link from "next/link";
-import {usePathname} from "next/navigation";
-import {Button} from "@/components/ui/button";
-import {cn} from "@/lib/utils";
-import {ContentWidth} from "@/components/ContentWidth";
+import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { ContentWidth } from "@/components/ContentWidth";
+import { Menu, Phone, ArrowRight } from "lucide-react";
 
 import {
   NavigationMenu,
@@ -15,6 +16,21 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const NAV = [
   // { label: "Portafolio", href: "/portfolio" },
@@ -68,8 +84,8 @@ export function HeaderLayout() {
       <header className="sticky top-0 z-50 w-full">
         <div className="border-b border-border/60 bg-background/70 backdrop-blur-xl">
           <ContentWidth>
-            <div className="container-custom h-16 flex items-center justify-between gap-3">
-              <Link href="/" className="flex items-center gap-2">
+            <div className="h-16 flex items-center justify-between gap-3">
+              <Link href="/" className="flex items-center gap-2 z-50">
                 <img
                     className="h-8 w-auto md:h-9"
                     src="/logo-servitec-marketing.png"
@@ -78,7 +94,6 @@ export function HeaderLayout() {
               </Link>
 
               <div className="hidden md:flex items-center gap-1">
-
                 <NavigationMenu>
                   <NavigationMenuList>
                     <NavigationMenuItem>
@@ -134,30 +149,49 @@ export function HeaderLayout() {
                 </NavigationMenu>
 
                 {NAV.map((item) => (
-                    <NavLink key={item.href} href={item.href} active={isActive(item.href)}>
+                    <NavLink
+                        key={item.href}
+                        href={item.href}
+                        active={isActive(item.href)}
+                    >
                       {item.label}
                     </NavLink>
                 ))}
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="hidden md:flex items-center gap-2">
                 <Button
                     variant="outline"
                     className={cn(
-                        "hidden sm:inline-flex rounded-full",
+                        "rounded-full",
                         "border-border/70 bg-background/60 hover:bg-muted/50"
                     )}
                     asChild
                 >
-                  <Link href="https://api.whatsapp.com/send?phone=51941801827" target="_blank">Agendar llamada</Link>
+                  <Link
+                      href="https://api.whatsapp.com/send?phone=51941801827"
+                      target="_blank"
+                  >
+                    Agendar llamada
+                  </Link>
                 </Button>
 
                 <Button
                     className="rounded-full bg-primary text-primary-foreground hover:opacity-95"
                     asChild
                 >
-                  <Link href="https://api.whatsapp.com/send?phone=51941801827" target="_blank">Solicitar cotización</Link>
+                  <Link
+                      href="https://api.whatsapp.com/send?phone=51941801827"
+                      target="_blank"
+                  >
+                    Cotizar
+                  </Link>
                 </Button>
+              </div>
+
+              {/* MOBILE NAV TOGGLE */}
+              <div className="md:hidden">
+                <MobileNav pathname={pathname} />
               </div>
             </div>
           </ContentWidth>
@@ -217,7 +251,7 @@ function ListItem({
             )}
         >
           <div className="flex items-center justify-between gap-3">
-            <p className={cn("font-semibold", active ? "text-foreground" : "text-foreground")}>
+            <p className={cn("font-semibold", active ? "text-primary" : "text-foreground")}>
               {title}
             </p>
           </div>
@@ -226,5 +260,134 @@ function ListItem({
           </p>
         </Link>
       </NavigationMenuLink>
+  );
+}
+
+function MobileNav({ pathname }: { pathname: string }) {
+  const [open, setOpen] = React.useState(false);
+  const closeSheet = () => setOpen(false);
+
+  return (
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetTrigger asChild>
+          <Button variant="ghost" size="icon" className="rounded-full">
+            <Menu className="h-6 w-6" />
+            <span className="sr-only">Abrir menú</span>
+          </Button>
+        </SheetTrigger>
+
+        <SheetContent side="right" className="w-[300px] sm:w-[350px] pr-0">
+          <SheetHeader className="px-6 text-left">
+            <SheetTitle asChild>
+              <Link href="/" onClick={closeSheet} className="inline-block">
+                <img
+                    className="h-8 w-auto"
+                    src="/logo-servitec-marketing.png"
+                    alt="Servitec"
+                />
+              </Link>
+            </SheetTitle>
+          </SheetHeader>
+
+          <div className="h-full overflow-y-auto px-6 pb-20 pt-8">
+            <div className="flex flex-col gap-6">
+
+              <div className="flex flex-col gap-4">
+                <Link
+                    href="/"
+                    onClick={closeSheet}
+                    className={cn(
+                        "text-lg font-medium transition-colors hover:text-primary",
+                        pathname === "/" ? "text-primary font-semibold" : "text-foreground"
+                    )}
+                >
+                  Inicio
+                </Link>
+
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="services" className="border-none">
+                    <AccordionTrigger className="py-0 text-lg font-medium hover:text-primary hover:no-underline data-[state=open]:text-primary">
+                      Servicios
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-0 pt-4">
+                      <div className="flex flex-col gap-3 pl-4 border-l border-border/50">
+                        {SERVICES_MENU.map((item) => (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                onClick={closeSheet}
+                                className={cn(
+                                    "text-sm transition-colors hover:text-primary py-1",
+                                    pathname.startsWith(item.href) ? "text-primary font-medium" : "text-muted-foreground"
+                                )}
+                            >
+                              {item.title}
+                            </Link>
+                        ))}
+                        <Link
+                            href="/services"
+                            onClick={closeSheet}
+                            className="text-sm font-semibold text-primary mt-2 flex items-center gap-1"
+                        >
+                          Ver todo <ArrowRight className="h-3 w-3" />
+                        </Link>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+
+                {NAV.map((item) => (
+                    <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={closeSheet}
+                        className={cn(
+                            "text-lg font-medium transition-colors hover:text-primary",
+                            pathname.startsWith(item.href) ? "text-primary font-semibold" : "text-foreground"
+                        )}
+                    >
+                      {item.label}
+                    </Link>
+                ))}
+              </div>
+
+              <div className="h-px w-full bg-border/60" />
+
+              <div className="flex flex-col gap-3">
+                <Button
+                    className="w-full rounded-full bg-primary text-primary-foreground h-12 text-base shadow-lg shadow-primary/20"
+                    asChild
+                >
+                  <Link
+                      href="https://api.whatsapp.com/send?phone=51941801827"
+                      target="_blank"
+                  >
+                    Solicitar cotización
+                  </Link>
+                </Button>
+
+                <Button
+                    variant="outline"
+                    className="w-full rounded-full h-12 text-base border-primary/20 hover:bg-primary/5"
+                    asChild
+                >
+                  <Link
+                      href="https://api.whatsapp.com/send?phone=51941801827"
+                      target="_blank"
+                  >
+                    <Phone className="mr-2 h-4 w-4" />
+                    Agendar llamada
+                  </Link>
+                </Button>
+              </div>
+
+              <div className="mt-auto pt-6 text-xs text-muted-foreground">
+                <p>© {new Date().getFullYear()} Servitec.</p>
+                <p>Todos los derechos reservados.</p>
+              </div>
+            </div>
+          </div>
+        </SheetContent>
+      </Sheet>
   );
 }
