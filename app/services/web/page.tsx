@@ -45,7 +45,7 @@ function WebHero() {
             <ContentWidth>
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
-                    <div className="flex-1 text-center lg:text-left z-10 order-2 lg:order-1">
+                    <div className="flex-1 text-center lg:text-left z-10 order-1">
                         <Badge variant="outline" className="mb-6 py-1.5 px-4 text-sm border-fuchsia-500/30 bg-fuchsia-500/10 text-fuchsia-500 rounded-full">
                             <LayoutTemplate className="w-3.5 h-3.5 mr-2" />
                             Diseño & Arquitectura Web
@@ -76,7 +76,7 @@ function WebHero() {
                         </div>
                     </div>
 
-                    <div className="flex-1 w-full flex justify-center order-1 lg:order-2 relative perspective-1000">
+                    <div className="flex-1 w-full flex justify-center order-2 relative perspective-1000">
                         <div className="relative w-full max-w-[420px] bg-background/80 backdrop-blur-xl border border-border/50 rounded-3xl shadow-2xl p-8 transform rotate-y-[-5deg] transition-transform duration-500 hover:rotate-0">
                             <div className="flex items-center justify-between mb-8 border-b border-border/40 pb-4">
                                 <div className="flex items-center gap-2">
@@ -121,9 +121,6 @@ function WebHero() {
     );
 }
 
-// ----------------------------------------------------------------------
-// NUEVA SECCIÓN: TECH STACK
-// ----------------------------------------------------------------------
 function TechStackSection() {
     return (
         <section className="py-12 border-b border-border/40">
@@ -138,7 +135,6 @@ function TechStackSection() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {/* Astro Card */}
                     <div className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/40 p-6 hover:bg-card/60 transition-colors">
                         <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-orange-500/10 blur-2xl group-hover:bg-orange-500/20 transition-colors" />
                         <div className="relative z-10 flex flex-col items-center text-center">
@@ -152,8 +148,6 @@ function TechStackSection() {
                             </p>
                         </div>
                     </div>
-
-                    {/* Next.js Card */}
                     <div className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/40 p-6 hover:bg-card/60 transition-colors">
                         <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-foreground/5 blur-2xl group-hover:bg-foreground/10 transition-colors" />
                         <div className="relative z-10 flex flex-col items-center text-center">
@@ -167,8 +161,6 @@ function TechStackSection() {
                             </p>
                         </div>
                     </div>
-
-                    {/* React Card */}
                     <div className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/40 p-6 hover:bg-card/60 transition-colors">
                         <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-cyan-500/10 blur-2xl group-hover:bg-cyan-500/20 transition-colors" />
                         <div className="relative z-10 flex flex-col items-center text-center">

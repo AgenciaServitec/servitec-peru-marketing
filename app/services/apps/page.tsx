@@ -30,7 +30,7 @@ function AppsHero() {
             <ContentWidth>
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
-                    <div className="flex-1 text-center lg:text-left z-10 order-2 lg:order-1">
+                    <div className="flex-1 text-center lg:text-left z-10 order-1">
                         <Badge variant="outline" className="mb-6 py-1.5 px-4 text-sm border-violet-500/30 bg-violet-500/10 text-violet-500 rounded-full">
                             <Smartphone className="w-3.5 h-3.5 mr-2" />
                             Desarrollo Mobil
@@ -69,7 +69,7 @@ function AppsHero() {
                         </div>
                     </div>
 
-                    <div className="flex-1 w-full flex justify-center order-1 lg:order-2 relative perspective-1000">
+                    <div className="flex-1 w-full flex justify-center order-2 relative perspective-1000">
                         <div className="absolute inset-0 bg-gradient-to-tr from-violet-500/30 to-cyan-500/30 blur-[60px] rounded-full transform scale-75" />
 
                         <div className="relative w-[300px] h-[600px] bg-background border-[8px] border-foreground/10 rounded-[3rem] shadow-2xl overflow-hidden transform rotate-y-[-10deg] rotate-x-[5deg] transition-transform duration-500 hover:rotate-0">
