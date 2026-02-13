@@ -64,7 +64,7 @@ export function FooterLayout() {
                     experiencias web modernas.
                   </p>
                   <p className="text-xs font-mono text-muted-foreground/80">
-                    RUC: 20545355621
+                    RUC: 20604141240
                   </p>
                 </div>
 
