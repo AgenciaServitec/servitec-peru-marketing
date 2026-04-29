@@ -732,7 +732,7 @@ export function ServicesShowcase() {
             <ContentWidth>
                 <div className="flex items-end justify-between gap-4">
                     <div>
-                        <h2 data-snake-title className="mt-3 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight">
+                        <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight">
                             Servicios que impulsan tu crecimiento
                         </h2>
                         <p className="mt-3 max-w-2xl text-muted-foreground">
