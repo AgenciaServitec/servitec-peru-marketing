@@ -71,7 +71,6 @@ h1 {
   --font-sans: "Satoshi", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --radius: 0.625rem;
 
-  /* Base */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
 
@@ -81,48 +80,32 @@ h1 {
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
 
-  /* Brand (logo-aligned) */
-  /* Rojo (CTA) - cercano a Google Red */
   --primary: oklch(0.62 0.22 25);
   --primary-foreground: oklch(1 0 0);
 
-  /* Azul (confianza/tech) - cercano a Google Blue */
   --secondary: oklch(0.62 0.20 255);
   --secondary-foreground: oklch(1 0 0);
 
-  /* UI Accent (para hover/selected) -> neutro */
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.145 0 0);
 
-  /* Verde solo para status/success (nuevo token) */
   --success: oklch(0.72 0.19 145);
   --success-foreground: oklch(0.145 0 0);
 
-  /* Amarillo (highlight) - úsalo para chips/insights, NO para CTAs */
   --warning: oklch(0.84 0.17 90);
   --warning-foreground: oklch(0.145 0 0);
 
-  /* Muted */
   --muted: oklch(0.975 0 0);
   --muted-foreground: oklch(0.556 0 0);
 
-  /* Destructive (puede ser el mismo rojo o un rojo más intenso) */
   --destructive: oklch(0.60 0.24 25);
   --destructive-foreground: oklch(1 0 0);
 
-  /* Borders & Input */
   --border: oklch(0.92 0 0);
   --input: oklch(0.92 0 0);
   --ring: var(--primary);
 
-  /* Charts */
-  --chart-1: var(--primary);     /* rojo */
-  --chart-2: var(--secondary);   /* azul */
-  --chart-3: var(--accent);      /* verde */
-  --chart-4: var(--warning);     /* amarillo */
-  --chart-5: oklch(0.68 0.18 315); /* violeta suave opcional */
 
-  /* Sidebar */
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: var(--primary);
@@ -143,7 +126,6 @@ h1 {
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
 
-  /* Brand: mantiene vibra pero ajustado a dark */
   --primary: oklch(0.70 0.22 25);
   --primary-foreground: oklch(0.145 0 0);
 
@@ -211,7 +193,6 @@ h1 {
   }
 }
 
-/* Global Background with Glow & Grid */
 .global-background {
   position: fixed;
   inset: 0;
@@ -220,7 +201,6 @@ h1 {
   background: var(--background);
 }
 
-/* Vibrant glows with orange/purple theme + subtle grid */
 .global-background::before {
   background:
           radial-gradient(800px 500px at 15% 20%, rgba(255, 94, 58, 0.06), transparent 55%),
@@ -231,7 +211,6 @@ h1 {
   opacity: 0.55;
 }
 
-/* Vignette for depth */
 .global-background::after {
   content: "";
   position: absolute;
@@ -245,7 +224,6 @@ h1 {
   opacity: 1;
 }
 
-/* Gradient Text Utilities */
 .gradient-text-primary {
   background: linear-gradient(135deg,
   color-mix(in oklch, var(--primary) 100%, transparent),
@@ -280,7 +258,6 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
-/* Gradient Background Utilities */
 .bg-gradient-primary {
   background: linear-gradient(135deg, #FF5E3A 0%, #FF2E63 100%);
 }
@@ -301,7 +278,6 @@ h1 {
   background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
 }
 
-/* Button Utilities */
 .btn-primary {
   background: linear-gradient(135deg, #FF5E3A 0%, #FF2E63 100%);
   @apply text-white font-semibold px-6 py-3 rounded-lg shadow-lg;
@@ -331,12 +307,10 @@ h1 {
   @apply bg-gradient-to-br from-white to-gray-50 border border-gray-100 rounded-xl p-6 shadow-lg;
 }
 
-/* Glass Morphism */
 .glass {
   @apply bg-white/80 backdrop-blur-lg border border-white/20 shadow-xl;
 }
 
-/* Section Utilities */
 .section-padding {
   @apply py-16 md:py-24 lg:py-32 px-4 md:px-6 lg:px-8;
 }
@@ -345,7 +319,6 @@ h1 {
   @apply max-w-7xl mx-auto;
 }
 
-/* Hover Effects */
 .hover-glow {
   @apply transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,94,58,0.3)];
 }
@@ -354,7 +327,6 @@ h1 {
   @apply transition-transform duration-300 hover:scale-105;
 }
 
-/* Custom Shadows */
 .shadow-primary {
   box-shadow: 0 10px 40px rgba(255, 94, 58, 0.2);
 }
@@ -367,7 +339,6 @@ h1 {
   box-shadow: 0 10px 40px rgba(6, 182, 212, 0.2);
 }
 
-/* Animations */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -404,7 +375,6 @@ h1 {
   html, body { cursor: auto !important; }
 }
 
-/* Capa 1: grilla fija, jamás se mueve */
 .ambient-grid {
   position: fixed;
   inset: 0;
@@ -416,21 +386,6 @@ h1 {
   background-size: 64px 64px, 64px 64px;
 }
 
-/* Capa 2: glows (pueden tener parallax) */
-/*.ambient-glow {*/
-/*  position: fixed;*/
-/*  inset: 0;*/
-/*  z-index: 0;*/
-/*  pointer-events: none;*/
-/*  background:*/
-/*          radial-gradient(700px 420px at 15% 15%, color-mix(in oklch, var(--primary) 18%, transparent), transparent 60%),*/
-/*          radial-gradient(680px 420px at 85% 25%, color-mix(in oklch, var(--secondary) 14%, transparent), transparent 60%),*/
-/*          radial-gradient(700px 420px at 50% 90%, color-mix(in oklch, var(--accent) 10%, transparent), transparent 65%);*/
-/*  opacity: .55;*/
-/*  transform: translate3d(0,0,0);*/
-/*}*/
-
-/* Tu contenido por encima */
 .page-content {
   position: relative;
   z-index: 1;

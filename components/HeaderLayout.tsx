@@ -81,8 +81,8 @@ export function HeaderLayout() {
       pathname === "/services" || pathname?.startsWith("/services/");
 
   return (
-      <header className="sticky top-0 z-50 w-full">
-        <div className="border-b border-border/60 bg-background/70 backdrop-blur-xl">
+      <header className="fixed top-0 z-50 w-full">
+        <div className="border-b border-border/60 bg-background backdrop-blur-xl">
           <ContentWidth>
             <div className="h-16 flex items-center justify-between gap-3">
               <Link href="/" className="flex items-center gap-2 z-50">

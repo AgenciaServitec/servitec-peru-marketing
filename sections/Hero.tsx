@@ -1,14 +1,13 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import {useEffect, useRef} from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { ContentWidth } from "@/components/ContentWidth";
-import { useTypewriter } from "@/hooks/useTypewriter";
-import { DM_Serif_Display, Plus_Jakarta_Sans } from "next/font/google";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import {Button} from "@/components/ui/button";
+import {cn} from "@/lib/utils";
+import {ContentWidth} from "@/components/ContentWidth";
+import {useTypewriter} from "@/hooks/useTypewriter";
+import {DM_Serif_Display, Plus_Jakarta_Sans} from "next/font/google";
 
 const jakarta = Plus_Jakarta_Sans({
     subsets: ["latin"],
@@ -231,74 +230,58 @@ export function Hero() {
     }, []);
 
     return (
-        <ContentWidth>
-            <section id="hero" className={cn("relative overflow-hidden", jakarta.className)}>
-                <div className="pt-16 relative">
+            <section id="hero" className={cn("relative overflow-hidden w-full", jakarta.className)}>
 
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/hero-image.jpeg"
+                        alt=""
+                        fill
+                        className="object-cover object-center"
+                        priority
+                    />
+                </div>
+
+        <ContentWidth className="relative z-10">
+                <div className="pt-16">
                     <div className="mx-auto max-w-4xl text-center">
-                        <h1
-                            className={cn(
-                                "mt-2 tracking-tight leading-[0.95] text-[clamp(2.4rem,5vw,4.5rem)]",
-                                dmSerif.className
-                            )}
-                        >
-                            Marketing digital y{" "}
+                        <h1 className="mt-2 tracking-tight leading-[0.95] text-[clamp(2.4rem,5vw,4.5rem)] text-black">
+    <span className="drop-shadow-[2px_2px_0_white]">
+        Marketing digital y{" "}
+    </span>
                             <em className="not-italic" style={{
-                                background: "linear-gradient(90deg, #4285F4, #34A853)",
                                 WebkitBackgroundClip: "text",
-                                WebkitTextFillColor: "transparent",
                                 backgroundClip: "text",
+                                filter: "drop-shadow(2px 2px 0 white)"
                             }}>
                                 desarrollo web
                             </em>
                         </h1>
 
-                        <p className="mt-3 text-lg md:text-xl font-medium">
+                        <p className="mt-3 text-lg md:text-xl font-medium text-black drop-shadow-[1px_1px_0_white]">
                             para{" "}
-                            <span className="text-primary font-semibold">
-                                {typedText}
-                                <span className="animate-pulse">|</span>
-                            </span>
+                            <span className="relative px-2 py-0.5 font-bold">
+                                <span className="absolute inset-0 bg-white/60 blur-xl -z-10 rounded-full" />
+        <span className="text-primary relative z-10">
+            {typedText}
+            <span className="animate-pulse">|</span>
+        </span>
+    </span>
                         </p>
 
                         <div className="mt-7 flex flex-col sm:flex-row sm:justify-center gap-3">
-                            <Button
-                                className="rounded-full bg-primary text-primary-foreground hover:opacity-95 font-semibold"
-                                asChild
-                            >
+                            <Button className="rounded-full bg-primary text-primary-foreground hover:opacity-95 font-semibold" asChild>
                                 <Link href="https://wa.me/51941801827" target="_blank">
                                     Solicitar cotización
                                 </Link>
                             </Button>
-                            <Button
-                                variant="outline"
-                                className="rounded-full border-primary/30 hover:border-primary font-semibold"
-                                asChild
-                            >
+                            <Button variant="outline" className="rounded-full border-primary/30 hover:border-primary font-semibold bg-white/50" asChild>
                                 <Link href="/services">Ver servicios</Link>
                             </Button>
                         </div>
                     </div>
 
                     <div className="mt-10 md:mt-14 relative group">
-                        <div className="absolute right-4 -top-12 hidden md:flex items-center gap-2">
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                className="h-8 w-8 rounded-full border-border/70 bg-card/50 backdrop-blur hover:bg-background z-10"
-                                onClick={() => scroll("left")}
-                            >
-                                <ChevronLeft className="h-4 w-4" />
-                            </Button>
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                className="h-8 w-8 rounded-full border-border/70 bg-card/50 backdrop-blur hover:bg-background z-10"
-                                onClick={() => scroll("right")}
-                            >
-                                <ChevronRight className="h-4 w-4" />
-                            </Button>
-                        </div>
 
                         <div className="rounded-3xl border border-border/70 bg-card/50 backdrop-blur p-3 md:p-4 shadow-sm relative">
                             <div
@@ -352,8 +335,8 @@ export function Hero() {
                         </div>
                     </div>
                 </div>
-            </section>
         </ContentWidth>
+            </section>
     );
 }
 
