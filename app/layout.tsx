@@ -15,9 +15,9 @@ export const metadata: Metadata = {
     authors: [{ name: "Servitec Perú Group" }],
 
     icons: {
-        icon: "/logo-servitec-marketing.png",
-        shortcut: "/logo-servitec-marketing.png",
-        apple: "/logo-servitec-marketing.png",
+        icon: "/favicon.png",
+        shortcut: "/favicon.png",
+        apple: "/favicon.png",
     },
 
     openGraph: {
