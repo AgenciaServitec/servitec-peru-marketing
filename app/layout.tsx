@@ -3,6 +3,7 @@ import {HeaderLayout} from "@/components/HeaderLayout";
 import {FooterLayout} from "@/components/FooterLayout";
 import {Metadata} from "next";
 import {CustomCursor} from "@/components/CustomCursor";
+import Script from "next/script";
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://servitec.site"),
@@ -60,7 +61,31 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="es" className="scroll-smooth">
+        <head>
+            <Script
+                id="gtm-script"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: `
+                            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                            })(window,document,'script','dataLayer','GTM-M6GH3T2F');
+                        `,
+                }}
+            />
+        </head>
         <body className="min-h-screen antialiased">
+        <noscript>
+            <iframe
+                src="https://www.googletagmanager.com/ns.html?id=GTM-M6GH3T2F"
+                height="0"
+                width="0"
+                style={{ display: "none", visibility: "hidden" }}
+            />
+        </noscript>
+
         <div className="relative flex min-h-screen flex-col overflow-x-hidden">
             <CustomCursor />
             <HeaderLayout />
