@@ -37,7 +37,7 @@ export function Cta() {
                                 asChild
                                 size="lg"
                             >
-                                <Link href="https://api.whatsapp.com/send?phone=941801827" target="_blank">
+                                <Link href="https://wa.me/51941801827?text=Hola%20Servitec,%20deseo%20cotizar%20una%20p%C3%A1gina%20web%20para%20mi%20negocio." target="_blank">
                                     Solicitar cotización
                                     <ArrowUpRight className="ml-2 h-4 w-4" />
                                 </Link>

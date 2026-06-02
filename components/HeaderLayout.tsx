@@ -169,7 +169,7 @@ export function HeaderLayout() {
                     asChild
                 >
                   <Link
-                      href="https://api.whatsapp.com/send?phone=51941801827"
+                      href="https://wa.me/51941801827?text=Hola%20Servitec,%20deseo%20cotizar%20una%20p%C3%A1gina%20web%20para%20mi%20negocio."
                       target="_blank"
                   >
                     Agendar llamada
@@ -181,7 +181,7 @@ export function HeaderLayout() {
                     asChild
                 >
                   <Link
-                      href="https://api.whatsapp.com/send?phone=51941801827"
+                      href="https://wa.me/51941801827?text=Hola%20Servitec,%20deseo%20cotizar%20una%20p%C3%A1gina%20web%20para%20mi%20negocio."
                       target="_blank"
                   >
                     Cotizar
@@ -359,7 +359,7 @@ function MobileNav({ pathname }: { pathname: string }) {
                     asChild
                 >
                   <Link
-                      href="https://api.whatsapp.com/send?phone=51941801827"
+                      href="https://wa.me/51941801827?text=Hola%20Servitec,%20deseo%20cotizar%20una%20p%C3%A1gina%20web%20para%20mi%20negocio."
                       target="_blank"
                   >
                     Solicitar cotización
@@ -372,7 +372,7 @@ function MobileNav({ pathname }: { pathname: string }) {
                     asChild
                 >
                   <Link
-                      href="https://api.whatsapp.com/send?phone=51941801827"
+                      href="https://wa.me/51941801827?text=Hola%20Servitec,%20deseo%20cotizar%20una%20p%C3%A1gina%20web%20para%20mi%20negocio."
                       target="_blank"
                   >
                     <Phone className="mr-2 h-4 w-4" />

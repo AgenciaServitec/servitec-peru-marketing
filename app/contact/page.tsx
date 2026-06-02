@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { ContentWidth } from "@/components/ContentWidth";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { ArrowUpRight, CheckCircle2, Mail, MessageCircle, Phone, } from "lucide-react";
+import {ContentWidth} from "@/components/ContentWidth";
+import {Button} from "@/components/ui/button";
+import {cn} from "@/lib/utils";
+import {ArrowUpRight, CheckCircle2, Mail, MessageCircle, Phone,} from "lucide-react";
 
 type ServiceType =
     | "Google Ads + Meta Ads"
@@ -166,7 +166,7 @@ ${form.message}`;
                             </Link>
                         </Button>
                         <Button className="rounded-full bg-primary text-primary-foreground hover:opacity-95" asChild>
-                            <Link href="https://api.whatsapp.com/send?phone=941801827" target="_blank">
+                            <Link href="https://wa.me/51941801827?text=Hola%20Servitec,%20deseo%20cotizar%20una%20p%C3%A1gina%20web%20para%20mi%20negocio." target="_blank">
                                 Solicitar cotización <ArrowUpRight className="ml-2 h-4 w-4" />
                             </Link>
                         </Button>
@@ -317,7 +317,7 @@ ${form.message}`;
                                     icon={<MessageCircle className="h-4 w-4" />}
                                     title="WhatsApp"
                                     desc="Respuesta más rápida"
-                                    href="https://api.whatsapp.com/send?phone=941801827"
+                                    href="https://wa.me/51941801827?text=Hola%20Servitec,%20deseo%20cotizar%20una%20p%C3%A1gina%20web%20para%20mi%20negocio."
                                 />
                                 <QuickLink
                                     icon={<Mail className="h-4 w-4" />}

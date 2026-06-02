@@ -870,7 +870,7 @@ export function ServicesShowcase() {
                                                     asChild
                                                     size="lg"
                                                 >
-                                                    <Link href="https://api.whatsapp.com/send?phone=51941801827" target="_blank">
+                                                    <Link href="https://wa.me/51941801827?text=Hola%20Servitec,%20deseo%20cotizar%20una%20p%C3%A1gina%20web%20para%20mi%20negocio." target="_blank">
                                                         Solicitar cotización
                                                     </Link>
                                                 </Button>
